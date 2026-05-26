@@ -1,9 +1,11 @@
 package ucr.ac.cr.EcoHogar.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Device {
+    @Id
     private Integer idDevice;
     private String name;
     private Double usedLight;
