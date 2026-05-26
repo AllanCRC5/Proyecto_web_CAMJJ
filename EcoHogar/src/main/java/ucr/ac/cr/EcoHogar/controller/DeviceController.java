@@ -1,9 +1,54 @@
 package ucr.ac.cr.EcoHogar.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import ucr.ac.cr.EcoHogar.model.Device;
+import ucr.ac.cr.EcoHogar.service.DeviceService;
+
+import javax.naming.spi.DirStateFactory;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/EcoHogar")
 public class DeviceController {
+
+    @Autowired
+    private DeviceService service;
+
+    @PostMapping("/add")
+    public ResponseEntity<?> save(@Validated @RequestBody Device device, BindingResult result){
+        if (result.hasErrors()){
+            Map<String, String> errors = new HashMap<>();
+            for (FieldError error : result.getFieldErrors()){
+                errors.put(error.getField(), error.getDefaultMessage());
+            }
+            return ResponseEntity.badRequest().body(errors);
+        }
+        Device devicePrue = this.service.findByName(device.getName());
+        if (devicePrue != null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("El dispositivo "+device.getName()+" ya se encuentra registrado!");
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(device));
+    }
+
+    @GetMapping("/findAll")
+    public ResponseEntity<?> findAll(){
+        return ResponseEntity.ok(this.service.findAll());
+    }
+
+    @GetMapping("/findByName/{name}")
+    public ResponseEntity<?> findByName(@PathVariable String name){
+        Device device = this.service.findByName(name);
+        if (device == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El dispositivo con el nombre "+name+"no se encuentra registrado");
+        }
+        return ResponseEntity.ok(device);
+    }
+
 }
