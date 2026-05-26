@@ -1,16 +1,20 @@
 package ucr.ac.cr.EcoHogar.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Service {
-    private Double waterCostPerHour;
+
+    @Id
+    private Integer id;
+    private Double waterCostPerlit;
     private Double hoursOfLight;
     private Double lightCostPerHour;
     private Double litersOfWaterConsumed;
 
     public Service(Double waterCostPerHour, Double hoursOfLight, Double lightCostPerHour, Double litersOfWaterConsumed) {
-        this.waterCostPerHour = waterCostPerHour;
+        this.waterCostPerlit = waterCostPerHour;
         this.hoursOfLight = hoursOfLight;
         this.lightCostPerHour = lightCostPerHour;
         this.litersOfWaterConsumed = litersOfWaterConsumed;
@@ -19,12 +23,20 @@ public class Service {
     public Service() {
     }
 
-    public Double getWaterCostPerHour() {
-        return waterCostPerHour;
+    public Double getWaterCostPerlit() {
+        return waterCostPerlit;
     }
 
-    public void setWaterCostPerHour(Double waterCostPerHour) {
-        this.waterCostPerHour = waterCostPerHour;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setWaterCostPerlit(Double waterCostPerlit) {
+        this.waterCostPerlit = waterCostPerlit;
     }
 
     public Double getHoursOfLight() {
