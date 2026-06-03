@@ -13,7 +13,7 @@ public class DeviceService {
 
     @Autowired
     private DeviceRepository repository;
-
+//Guardar electrodoméstico
     public Device save(Device device) {
         Optional<Device> optional = this.repository.findById(device.getId());
         if (optional.isPresent()) {
@@ -21,7 +21,7 @@ public class DeviceService {
         }
         return this.repository.save(device);
     }
-
+//Obtener por nombre
     public Device findByName(String name){
         Optional<Device> optional = this.repository.findByName(name);
         if(optional.isPresent()){
@@ -29,7 +29,7 @@ public class DeviceService {
         }
         return null;
     }
-
+//Obtener todos
     public List<Device> findAll (){
         return this.repository.findAll();
     }

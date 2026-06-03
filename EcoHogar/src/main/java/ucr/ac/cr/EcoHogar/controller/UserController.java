@@ -21,20 +21,14 @@ public class UserController
     @Autowired
     private UserService userService;
 
-
-
-
-    //Find All-funcionaa
+    //Obtener todos-funcionaa
     @GetMapping
     public ResponseEntity<List<User>> findAll()
     {
         return ResponseEntity.ok(this.userService.findAll());
     }//fin metodo
 
-
-
-
-    //findById-funciona
+    //Obtener por id-funciona
     @GetMapping("/id/{id}")
     public ResponseEntity<?> findById(@PathVariable Integer id)
     {
@@ -60,7 +54,7 @@ public class UserController
 //        return ResponseEntity.ok(this.userService.findByName(name));
 //    }//fin metodo
 
-    // edit-funciona
+    //Editar-funciona
     @PutMapping("/id/{id}")
     public ResponseEntity<?>edit(@Validated @PathVariable Integer id, @RequestBody User user, BindingResult result)
     {
@@ -81,14 +75,9 @@ public class UserController
             return ResponseEntity.status(HttpStatus.CONFLICT).body("No se encuentra el usuario con ese id");
         }//fin if
         return ResponseEntity.ok(this.userService.editUser(id, user));
-    }//fin metopdo
+    }//fin metodo
 
-    //save
-
-
-
-
-    //save DTO
+    //Guardar usuario
     @PostMapping("/save")
     public  ResponseEntity<?> saveUser(@Validated @RequestBody User user, BindingResult result)
     {
@@ -109,9 +98,4 @@ public class UserController
         }//fin if
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }//fin metodo
-
-
-
-
-
 }//fin clase

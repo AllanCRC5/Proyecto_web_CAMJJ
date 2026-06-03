@@ -12,15 +12,15 @@ public class ServiceService {
 
     @Autowired
     private ServiceRepository repository;
-
+//Obtener todos
     public List<Service>findAll(){
         return this.repository.findAll();
     }
-
+//Obtener por nombre
     public Service findByName(String name){
         return this.repository.findByName(name);
     }
-
+//Guardar servicio
     public Service save(Service service){
         Optional<Service>optional=this.repository.findById(service.getId());
         if (optional.isPresent()){
