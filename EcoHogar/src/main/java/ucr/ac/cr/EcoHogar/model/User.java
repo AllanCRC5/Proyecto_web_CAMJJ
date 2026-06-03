@@ -1,11 +1,14 @@
 package ucr.ac.cr.EcoHogar.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
-public class User {
+@Table(name = "tb_usuario")
+public class User
+{
 
-    private Integer idFamily;
+    private Integer id;
     private String name;
     private Integer memberQuantity;
     private String email;
@@ -14,20 +17,20 @@ public class User {
     public User() {
     }
 
-    public User(Integer idFamily, String name, Integer memberQuantity, String email, String password) {
-        this.idFamily = idFamily;
+    public User(Integer id, String name, Integer memberQuantity, String email, String password) {
+        this.id = id;
         this.name = name;
         this.memberQuantity = memberQuantity;
         this.email = email;
         this.password = password;
     }
 
-    public Integer getIdFamily() {
-        return idFamily;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdFamily(Integer idFamily) {
-        this.idFamily = idFamily;
+    public void setId(Integer idFamily) {
+        this.id = idFamily;
     }
 
     public String getName() {

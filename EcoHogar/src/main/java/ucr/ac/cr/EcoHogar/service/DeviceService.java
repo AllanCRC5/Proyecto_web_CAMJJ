@@ -1,7 +1,6 @@
 package ucr.ac.cr.EcoHogar.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ucr.ac.cr.EcoHogar.model.Device;
 import ucr.ac.cr.EcoHogar.repository.DeviceRepository;
@@ -16,7 +15,7 @@ public class DeviceService {
     private DeviceRepository repository;
 
     public Device save(Device device) {
-        Optional<Device> optional = this.repository.findById(device.getIdDevice());
+        Optional<Device> optional = this.repository.findById(device.getId());
         if (optional.isPresent()) {
             return null;
         }

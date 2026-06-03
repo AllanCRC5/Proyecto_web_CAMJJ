@@ -4,14 +4,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class Device {
+public class Device
+{
     @Id
-    private Integer idDevice;
+    private Integer id;
     private String name;
     private Double usedLight;
 
-    public Device(Integer idDevice, String name, Double usedLight) {
-        this.idDevice = idDevice;
+    public Device(Integer id, String name, Double usedLight) {
+        this.id = id;
         this.name = name;
         this.usedLight = usedLight;
     }
@@ -19,12 +20,12 @@ public class Device {
     public Device() {
     }
 
-    public Integer getIdDevice() {
-        return idDevice;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdDevice(Integer idDevice) {
-        this.idDevice = idDevice;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

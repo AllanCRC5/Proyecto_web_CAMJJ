@@ -1,14 +1,18 @@
 package ucr.ac.cr.EcoHogar.model.DTO;
 
-public class UserDTO {
+public class UserLoginDto {
 private Integer id;
 private String name;
 private String email;
+private String password;
 
-    public UserDTO() {
+    public UserLoginDto()
+    {
+
     }
 
-    public UserDTO(Integer id, String name, String email) {
+    public UserLoginDto(Integer id, String name, String email)
+    {
         this.id = id;
         this.name = name;
         this.email = email;
