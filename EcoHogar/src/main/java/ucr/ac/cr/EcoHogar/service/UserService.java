@@ -17,58 +17,11 @@ public class UserService
     @Autowired
     private UserRepository userRepository;
 
-
-//    Agregar
-     public UserLoginDto saveUserDto(User user)
-     {
-         Optional<User> opt=this.userRepository.findById(user.getId());
-         if(opt.isPresent()){
-             return null;
-         }
-         return this.convertUserDTO(this.userRepository.save(user));
-     }//fin metodo
-
-
-     // Metodo save sin login
-    public User saveUser(User user)
-    {
-        Optional<User> opt=this.userRepository.findById(user.getId());
-        if(opt.isPresent()){
-            return null;
-        }
-        return this.userRepository.save(user);
-    }//fin metodo
-
-
-
-
-
-
-//     Encontrar
-
-     public List<UserLoginDto> finAllDto()
-     {
-         return this.convertListDTO(this.userRepository.findAll());
-     }//fin metodo
-
-
-     public UserLoginDto findByIdDto(Integer id)
-     {
-         Optional<User> optional=this.userRepository.findById(id);
-         if (optional.isPresent())
-         {
-             return this.convertUserDTO(optional.get());
-         }
-         return null;
-     }//fin metodo
-
-
     // buscar sin DTO
-    public List<User> finAll()
+    public List<User> findAll()
     {
         return this.userRepository.findAll();
     }//fin metodo
-
 
     public User findByID(Integer id)
     {
@@ -80,42 +33,12 @@ public class UserService
         return null;
     }//fin metodo
 
-
-
-
-
-
-
-
-//     Borrar
-
-     public void deleteUser(Integer id)
-     {
-         this.userRepository.deleteById(id);
-     }//fin metodo
-
-
-
-
-
-//     Editar
-
-    public UserLoginDto editUserDto(Integer id, UserLoginDto userEdit)
+    //findByName
+    public List<User> findByName(String name)
     {
-        Optional<User> userOp=this.userRepository.findById(id);
-        if (userOp.isPresent())
-        {
-            User user=userOp.get();
-
-            user=userEdit;
-
-            return this.convertUserDTO(this.userRepository.save(user));
-        }
-        return null;
+        return this.userRepository.findByName(name);
     }//fin metodo
 
-
-    //editar sin DTO
     public User editUser(Integer id, User userEdit)
     {
         Optional<User> userOp=this.userRepository.findById(id);
@@ -128,12 +51,23 @@ public class UserService
         return null;
     }//fin metodo
 
+    // Metodo save sin login
+    public User save(User user)
+    {
+        Optional<User> opt=this.userRepository.findById(user.getId());
+        if(opt.isPresent()){
+            return null;
+        }
+        return this.userRepository.save(user);
+    }//fin metodo
 
-
-
-
-
-//
+//Borrar
+     public void deleteUser(Integer id)
+     {
+         this.userRepository.deleteById(id);
+     }//fin metodo
+    //editar
+//metodo convertir usuario a DTO
     public UserLoginDto convertUserDTO(User user)
     {
         UserLoginDto dto=new UserLoginDto();
@@ -143,7 +77,7 @@ public class UserService
         return dto;
     }//fin metodo
 
-
+//metodo convertir lista a DTO
     public List<UserLoginDto> convertListDTO(List<User> listUser)
     {
         List<UserLoginDto> listDTO = new ArrayList<>();
@@ -152,24 +86,6 @@ public class UserService
         }
         return listDTO;
     }//fin metodo
-
-
-
-    public List<UserLoginDto> findByNameDto(String name)
-    {
-        return this.convertListDTO(this.userRepository.findByName(name));
-    }//fin metodo
-
-
-
-
-    // findByName sin DTO
-    public List<User> findByName(String name)
-    {
-        return this.userRepository.findByName(name);
-    }//fin metodo
-
-
 
     public List<User> findAllByOrderByName()
     {

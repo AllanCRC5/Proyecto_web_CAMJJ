@@ -8,6 +8,7 @@ public class Service {
 
     @Id
     private Integer id;
+    private String name;
     private Double waterCostPerlit;
     private Double hoursOfLight;
     private Double lightCostPerHour;
