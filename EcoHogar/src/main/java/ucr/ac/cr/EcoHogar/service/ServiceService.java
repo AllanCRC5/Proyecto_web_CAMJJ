@@ -7,6 +7,7 @@ import ucr.ac.cr.EcoHogar.repository.ServiceRepository;
 import java.util.List;
 import java.util.Optional;
 
+@org.springframework.stereotype.Service
 public class ServiceService {
 
     @Autowired
