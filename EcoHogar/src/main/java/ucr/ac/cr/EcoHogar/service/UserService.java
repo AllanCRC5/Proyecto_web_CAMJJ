@@ -17,12 +17,12 @@ public class UserService
     @Autowired
     private UserRepository userRepository;
 
-    // buscar sin DTO
+    //Obtener todos
     public List<User> findAll()
     {
         return this.userRepository.findAll();
     }//fin metodo
-
+    //Obtener por id
     public User findByID(Integer id)
     {
         Optional<User> optional=this.userRepository.findById(id);
@@ -33,12 +33,12 @@ public class UserService
         return null;
     }//fin metodo
 
-    //findByName
+    //Obtener por nombre
     public List<User> findByName(String name)
     {
         return this.userRepository.findByName(name);
     }//fin metodo
-
+    //Metodo editar usuario
     public User editUser(Integer id, User userEdit)
     {
         Optional<User> userOp=this.userRepository.findById(id);
@@ -51,7 +51,7 @@ public class UserService
         return null;
     }//fin metodo
 
-    // Metodo save sin login
+    //Metodo save
     public User save(User user)
     {
         Optional<User> opt=this.userRepository.findById(user.getId());
@@ -61,12 +61,11 @@ public class UserService
         return this.userRepository.save(user);
     }//fin metodo
 
-//Borrar
+    //Borrar usuario
      public void deleteUser(Integer id)
      {
          this.userRepository.deleteById(id);
      }//fin metodo
-    //editar
 //metodo convertir usuario a DTO
     public UserLoginDto convertUserDTO(User user)
     {
