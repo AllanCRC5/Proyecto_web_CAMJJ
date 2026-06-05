@@ -66,6 +66,7 @@ public class UserService
      {
          this.userRepository.deleteById(id);
      }//fin metodo
+
 //metodo convertir usuario a DTO
     public UserLoginDto convertUserDTO(User user)
     {
