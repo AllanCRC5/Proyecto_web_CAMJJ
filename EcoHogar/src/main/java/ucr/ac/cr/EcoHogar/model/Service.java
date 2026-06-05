@@ -9,16 +9,16 @@ public class Service {
     @Id
     private Integer id;
     private String name;
-    private Double waterCostPerlit;
-    private Double hoursOfLight;
-    private Double lightCostPerHour;
-    private Double litersOfWaterConsumed;
+    private Double waterCostPerlit;//variable fija:
+    private Double hoursOfLightPd;
+    private Double lightCostPerHour;//variable fija:
+    private Double litersOfWaterConsumedPd;
 
-    public Service(Double waterCostPerHour, Double hoursOfLight, Double lightCostPerHour, Double litersOfWaterConsumed) {
+    public Service(Double waterCostPerHour, Double hoursOfLightPd, Double lightCostPerHour, Double litersOfWaterConsumedPd) {
         this.waterCostPerlit = waterCostPerHour;
-        this.hoursOfLight = hoursOfLight;
+        this.hoursOfLightPd = hoursOfLightPd;
         this.lightCostPerHour = lightCostPerHour;
-        this.litersOfWaterConsumed = litersOfWaterConsumed;
+        this.litersOfWaterConsumedPd = litersOfWaterConsumedPd;
     }
 
     public Service() {
@@ -40,12 +40,12 @@ public class Service {
         this.waterCostPerlit = waterCostPerlit;
     }
 
-    public Double getHoursOfLight() {
-        return hoursOfLight;
+    public Double getHoursOfLightPd() {
+        return hoursOfLightPd;
     }
 
-    public void setHoursOfLight(Double hoursOfLight) {
-        this.hoursOfLight = hoursOfLight;
+    public void setHoursOfLightPd(Double hoursOfLightPd) {
+        this.hoursOfLightPd = hoursOfLightPd;
     }
 
     public Double getLightCostPerHour() {
@@ -56,11 +56,11 @@ public class Service {
         this.lightCostPerHour = lightCostPerHour;
     }
 
-    public Double getLitersOfWaterConsumed() {
-        return litersOfWaterConsumed;
+    public Double getLitersOfWaterConsumedPd() {
+        return litersOfWaterConsumedPd;
     }
 
-    public void setLitersOfWaterConsumed(Double litersOfWaterConsumed) {
-        this.litersOfWaterConsumed = litersOfWaterConsumed;
+    public void setLitersOfWaterConsumedPd(Double litersOfWaterConsumedPd) {
+        this.litersOfWaterConsumedPd = litersOfWaterConsumedPd;
     }
 }
