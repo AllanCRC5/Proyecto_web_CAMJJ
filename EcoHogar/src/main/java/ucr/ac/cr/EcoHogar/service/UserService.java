@@ -45,7 +45,7 @@ public class UserService
         if (userOp.isPresent())
         {
             User user=userOp.get();
-            user=userEdit;
+            user=userEdi+t;
             return this.userRepository.save(user);
         }
         return null;
