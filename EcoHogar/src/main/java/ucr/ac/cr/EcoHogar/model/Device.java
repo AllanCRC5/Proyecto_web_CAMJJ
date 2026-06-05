@@ -10,11 +10,13 @@ public class Device
     private Integer id;
     private String name;
     private Double usedLight;
+    private Integer quantity;
 
-    public Device(Integer id, String name, Double usedLight) {
+    public Device(Integer id, String name, Double usedLight, Integer quantity) {
         this.id = id;
         this.name = name;
         this.usedLight = usedLight;
+        this.quantity = quantity;
     }
 
     public Device() {
@@ -42,5 +44,13 @@ public class Device
 
     public void setUsedLight(Double usedLight) {
         this.usedLight = usedLight;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }

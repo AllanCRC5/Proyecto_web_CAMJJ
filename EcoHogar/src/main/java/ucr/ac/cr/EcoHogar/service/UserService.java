@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class UserService
 {
-
+//IDEA: Pedir horas de agua por DÍA y electricidad por DÍA. Otro calcular al año. Otro calcular al mes(Se calcula mediante el calculo de método pasado(metodo*30)). Otro método que sea el índice ecológico.
     @Autowired
     private UserRepository userRepository;
 
@@ -45,7 +45,7 @@ public class UserService
         if (userOp.isPresent())
         {
             User user=userOp.get();
-            user=userEdi+t;
+            user=userEdit;
             return this.userRepository.save(user);
         }
         return null;

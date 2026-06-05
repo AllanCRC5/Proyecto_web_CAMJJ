@@ -48,9 +48,9 @@ public class ServiceService {
 
         service.setName(editService.getName());
         service.setwaterCostPerlit(editService.getwaterCostPerlit());
-        service.setHoursOfLight(serviceEdit.getHoursOfLight());
+        service.setHoursOfLightPd(serviceEdit.getHoursOfLight());
         service.setLightCostPerHour(serviceEdit.getLightCostPerHour());
-        service.setLitersOfWaterConsumed(serviceEdit.getLitersOfWaterConsumed());
+        service.setLitersOfWaterConsumedPd(serviceEdit.getLitersOfWaterConsumed());
 
         return this.ServiceRepository.save(service);
         }//if
