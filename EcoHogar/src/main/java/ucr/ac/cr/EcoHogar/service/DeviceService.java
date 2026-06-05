@@ -34,6 +34,4 @@ public class DeviceService {
         return this.repository.findAll();
     }
 
-
-
 }

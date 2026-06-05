@@ -4,16 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="d374e671-06b4-42a2-8699-37f51dcacbf3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/DeviceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/DeviceService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/ServiceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/ServiceService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/UserService.java" afterDir="false" />
     </list>
+=======
+    <list default="true" id="cd316927-b2aa-4c4b-8279-aed93d99e49f" name="Changes" comment="" />
+>>>>>>> 1e224d7d5761c1eb7ab2a04a7bf1cae08fd6bc42
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="CopilotPersistence">
     <persistenceIdMap>
       <entry key="_C:/Users/yossi/OneDrive/Documentos/EcoHogarProycto" value="3EEnoKof6i69dgygpxCWmAxXGuH" />
@@ -45,10 +50,21 @@
   &quot;fromUser&quot;: false
 }</component>
   <component name="ProjectId" id="3EEnoKof6i69dgygpxCWmAxXGuH" />
+=======
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="3EF4ucE3hL6D54QlLWFQuDLwxw8" />
+>>>>>>> 1e224d7d5761c1eb7ab2a04a7bf1cae08fd6bc42
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
@@ -100,4 +116,39 @@
       </map>
     </option>
   </component>
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "develop",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="EcoHogarProycto" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="EcoHogarProycto" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cd316927-b2aa-4c4b-8279-aed93d99e49f" name="Changes" comment="" />
+      <created>1779761207950</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1779761207950</updated>
+    </task>
+    <servers />
+  </component>
+>>>>>>> 1e224d7d5761c1eb7ab2a04a7bf1cae08fd6bc42
 </project>
