@@ -28,4 +28,39 @@ public class ServiceService {
         }
         return this.repository.save(service);
     }
+
+    //buscar por id
+    public Service findByID(Integer id)
+    {
+        Optional<Service> optional=this.ServiceRepository.findById(id);
+        if (optional.isPresent())
+        {
+            return optional.get();
+        }
+        return null;
+    }
+
+    //Editar
+    public Service editService(Integer id, Service editService){
+    Optional <Service> service = this.ServiceRepository.findById(id);
+    if (serviceOp.isPresent()){
+        Service service = serviceOp.get();
+
+        service.setName(editService.getName());
+        service.setwaterCostPerlit(editService.getwaterCostPerlit());
+        service.setHoursOfLight(serviceEdit.getHoursOfLight());
+        service.setLightCostPerHour(serviceEdit.getLightCostPerHour());
+        service.setLitersOfWaterConsumed(serviceEdit.getLitersOfWaterConsumed());
+
+        return this.ServiceRepository.save(service);
+        }//if
+        return null;
+    }
+
+    //borrar servicio
+    public void deleteService(Integer id){
+        this.ServiceRepository.deleteById(id);
+    }
+
+
 }
