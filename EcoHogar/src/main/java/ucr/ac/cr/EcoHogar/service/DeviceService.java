@@ -13,6 +13,15 @@ public class DeviceService {
 
     @Autowired
     private DeviceRepository repository;
+
+    //Obtener por id
+    public Device findById(int id) {
+        Optional<Device> device = repository.findById(id);
+        if (device.isPresent()) {
+            return device.get();
+        }
+        return null;
+    }
 //Guardar electrodoméstico
     public Device save(Device device) {
         Optional<Device> optional = this.repository.findById(device.getId());
@@ -32,6 +41,19 @@ public class DeviceService {
 //Obtener todos
     public List<Device> findAll (){
         return this.repository.findAll();
+    }
+
+    //Editar device
+    public Device editDevice(Integer id,Device device) {
+        Optional<Device> deviceOpt=this.repository.findById(id);
+        if(deviceOpt.isPresent()){
+            return deviceOpt.get();
+        }
+        return null;
+    }
+
+    public void deleteDevice(Integer id) {
+        this.repository.deleteById(id);
     }
 
 }

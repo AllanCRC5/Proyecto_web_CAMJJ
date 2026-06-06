@@ -1,17 +1,33 @@
 package ucr.ac.cr.EcoHogar.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 public class Service {
 
     @Id
+    @PositiveOrZero(message = "El id tiene que ser mayor a 0")
+    @Column(name = "id", nullable = false)
     private Integer id;
+    @NotBlank(message="El valor no puede ser null ni estar vacío")
+    @Column(name = "name", nullable = false, length = 150)
     private String name;
+    @PositiveOrZero(message = "El valor no puede ser null ni estar vacío")
+    @Column(name = "waterCostPerlit", nullable = false)
     private Double waterCostPerlit;//variable fija:
+    @PositiveOrZero(message = "El valor no puede ser null ni estar vacío")
+    @Column(name = "hoursOfLightPd", nullable = false)
     private Double hoursOfLightPd;
+    @PositiveOrZero(message = "El valor no puede ser null ni estar vacío")
+    @Column(name = "lightCostPerHour", nullable = false)
     private Double lightCostPerHour;//variable fija:
+    @PositiveOrZero(message = "El valor no puede ser null ni estar vacío")
+    @Column(name = "litersOfWaterConsumedPd", nullable = false)
     private Double litersOfWaterConsumedPd;
 
     public Service(Double waterCostPerHour, Double hoursOfLightPd, Double lightCostPerHour, Double litersOfWaterConsumedPd) {
