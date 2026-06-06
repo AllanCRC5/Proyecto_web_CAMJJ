@@ -1,8 +1,12 @@
 package ucr.ac.cr.EcoHogar.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "tb_usuario")
@@ -10,10 +14,20 @@ public class User
 {
 
     @Id
+    @PositiveOrZero(message = "El valor no puede ser null ni estar vacío")
+    @Column(name = "id", nullable = false)
     private Integer id;
+    @NotBlank(message = "El valor no puede ser null ni estar vacío")
+    @Column(name = "name", nullable = false, length = 150)
     private String name;
+    @PositiveOrZero(message = "El valor no puede ser null ni estar vacío")
+    @Column(name = "memberQuantity", nullable = false)
     private Integer memberQuantity;
+    @NotBlank(message = "El valor no puede ser null ni estar vacío")
+    @Column(name = "email", nullable = false, length = 50)
     private String email;
+    @NotBlank(message = "El valor no puede ser null ni estar vacío")
+    @Column(name = "password",  nullable = false, length = 30)
     private  String password;
 
     public User() {

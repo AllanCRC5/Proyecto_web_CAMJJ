@@ -32,7 +32,7 @@ public class ServiceService {
     //buscar por id
     public Service findByID(Integer id)
     {
-        Optional<Service> optional=this.ServiceRepository.findById(id);
+        Optional<Service> optional=this.repository.findById(id);
         if (optional.isPresent())
         {
             return optional.get();
@@ -42,24 +42,22 @@ public class ServiceService {
 
     //Editar
     public Service editService(Integer id, Service editService){
-    Optional <Service> service = this.ServiceRepository.findById(id);
-    if (serviceOp.isPresent()){
-        Service service = serviceOp.get();
-
-        service.setName(editService.getName());
-        service.setwaterCostPerlit(editService.getwaterCostPerlit());
-        service.setHoursOfLightPd(serviceEdit.getHoursOfLight());
-        service.setLightCostPerHour(serviceEdit.getLightCostPerHour());
-        service.setLitersOfWaterConsumedPd(serviceEdit.getLitersOfWaterConsumed());
-
-        return this.ServiceRepository.save(service);
+    Optional <Service> service = this.repository.findById(id);
+    if (service.isPresent()){
+        return this.repository.save(editService);
+//        Service service = serviceOp.get();
+//        service.setName(editService.getName());
+//        service.setwaterCostPerlit(editService.getwaterCostPerlit());
+//        service.setHoursOfLightPd(serviceEdit.getHoursOfLight());
+//        service.setLightCostPerHour(serviceEdit.getLightCostPerHour());
+//        service.setLitersOfWaterConsumedPd(serviceEdit.getLitersOfWaterConsumed());
         }//if
         return null;
     }
 
     //borrar servicio
     public void deleteService(Integer id){
-        this.ServiceRepository.deleteById(id);
+        this.repository.deleteById(id);
     }
 
 

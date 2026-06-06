@@ -1,15 +1,24 @@
 package ucr.ac.cr.EcoHogar.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 public class Device
 {
     @Id
+    @PositiveOrZero(message = "El valor no puede ser null ni puede estar vacío")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
+    @NotBlank(message="El valor no puede ser null ni puede estar vacío")
+    @Column(name = "name", nullable = false, length = 150)
     private String name;
+    @PositiveOrZero(message = "El valor no puede ser null ni puede estar vacío")
+    @Column(name = "usedLight", nullable = false)
     private Double usedLight;
+    @PositiveOrZero(message = "El valor no puede ser null ni puede estar vacío")
+    @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
     public Device(Integer id, String name, Double usedLight, Integer quantity) {
