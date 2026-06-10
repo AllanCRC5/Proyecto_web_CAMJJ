@@ -13,15 +13,22 @@ import java.util.Optional;
 @Service
 public class UserService
 {
-//IDEA: Pedir horas de agua por DÍA y electricidad por DÍA. Otro calcular al año. Otro calcular al mes(Se calcula mediante el calculo de método pasado(metodo*30 )). Otro método que sea el índice ecológico.
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private EcoServiceService ecoServiceService;
+
+    @Autowired
+    private DeviceService deviceService;
 
     //Obtener todos
     public List<User> findAll()
     {
         return this.userRepository.findAll();
     }//fin metodo
+
+
     //Obtener por id
     public User findByID(Integer id)
     {
@@ -33,11 +40,14 @@ public class UserService
         return null;
     }//fin metodo
 
+
     //Obtener por nombre
     public List<User> findByName(String name)
     {
         return this.userRepository.findByName(name);
     }//fin metodo
+
+
     //Metodo editar usuario
     public User editUser(Integer id, User userEdit)
     {
@@ -51,6 +61,7 @@ public class UserService
         return null;
     }//fin metodo
 
+
     //Metodo save
     public User save(User user)
     {
@@ -61,11 +72,13 @@ public class UserService
         return this.userRepository.save(user);
     }//fin metodo
 
+
     //Borrar usuario
      public void deleteUser(Integer id)
      {
          this.userRepository.deleteById(id);
      }//fin metodo
+
 
 //metodo convertir usuario a DTO
     public UserLoginDto convertUserDTO(User user)
@@ -77,21 +90,46 @@ public class UserService
         return dto;
     }//fin metodo
 
+
 //metodo convertir lista a DTO
     public List<UserLoginDto> convertListDTO(List<User> listUser)
     {
         List<UserLoginDto> listDTO = new ArrayList<>();
-        for (User user : listUser) {
+        for (User user : listUser)
+        {
             listDTO.add(this.convertUserDTO(user));
         }
         return listDTO;
     }//fin metodo
+
 
     public List<User> findAllByOrderByName()
     {
         return this.userRepository.findAllByOrderByName();
     }//fin metodo
 
+
+
+
+    //IDEA: Pedir horas de agua por DÍA y electricidad por DÍA.
+    // Otro calcular al mes
+
+    public Double waterConsumptionPerMonth(Double hoursPerDay)
+    {
+        return hoursPerDay*30;
+    }//fin metodo
+
+
+    public Double LigthConsumptionPerMonth(Double hoursPerDay)
+    {
+        private hourCost = 0;
+        return (hoursPerDay*service.)*30;
+    }//fin metodo
+
+
+    // Otro calcular al año.
+    // (Se calcula mediante el calculo de método pasado(metodo*30)).
+    // Otro método que sea el índice ecológico.
 
 
 }//fin clase

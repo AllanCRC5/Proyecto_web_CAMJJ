@@ -3,63 +3,84 @@ package ucr.ac.cr.EcoHogar.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
-@Entity
+@Entity// para decir que la clase sera una entidad
 public class Device
 {
-    @Id
+    @Id// establece que el dato de abajo sera la llave foranea
     @PositiveOrZero(message = "El valor no puede ser null ni puede estar vacío")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
+
     @NotBlank(message="El valor no puede ser null ni puede estar vacío")
     @Column(name = "name", nullable = false, length = 150)
     private String name;
+
     @PositiveOrZero(message = "El valor no puede ser null ni puede estar vacío")
     @Column(name = "usedLight", nullable = false)
     private Double usedLight;
+
     @PositiveOrZero(message = "El valor no puede ser null ni puede estar vacío")
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
-    public Device(Integer id, String name, Double usedLight, Integer quantity) {
+    public Device(Integer id, String name, Double usedLight, Integer quantity)
+    {
         this.id = id;
         this.name = name;
         this.usedLight = usedLight;
         this.quantity = quantity;
     }
 
-    public Device() {
+    //crear relaciones
+    @OneToMany(mappedBy = "Device")//crea la llave foránea
+    @JsonIgnore
+    private List<User> listUser;
+
+
+
+    public Device()
+    {
+
     }
 
-    public Integer getId() {
+    public Integer getId()
+    {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Integer id)
+    {
         this.id = id;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
-    public Double getUsedLight() {
+    public Double getUsedLight()
+    {
         return usedLight;
     }
 
-    public void setUsedLight(Double usedLight) {
+    public void setUsedLight(Double usedLight)
+    {
         this.usedLight = usedLight;
     }
 
-    public Integer getQuantity() {
+    public Integer getQuantity()
+    {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Integer quantity)
+    {
         this.quantity = quantity;
     }
-}
+}//fin clase

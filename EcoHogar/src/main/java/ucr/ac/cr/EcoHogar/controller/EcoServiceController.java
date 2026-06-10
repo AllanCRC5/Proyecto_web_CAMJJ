@@ -17,14 +17,16 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("api/EcoHogar/service")
-public class ServiceController {
+public class EcoServiceController
+{
 
 
     @Autowired
     private ServiceService service;
 
     @GetMapping("/all")
-    public ResponseEntity<?>findAll(){
+    public ResponseEntity<?>findAll()
+    {
         return ResponseEntity.ok(this.service.findAll());
     }
 
