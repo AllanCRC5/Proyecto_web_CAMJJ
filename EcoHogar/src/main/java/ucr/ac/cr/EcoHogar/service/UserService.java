@@ -120,18 +120,57 @@ public class UserService
     }//fin metodo
 
 
-    public Double LigthConsumptionPerMonth(Integer id)
+    public Double ligthConsumptionPerMonth(Integer id)
     {
         return (ecoServiceService.getEcoService(id).get().getHoursOfLightPd()*ecoServiceService.getEcoService(id).get().getLightCostPerHour())*30;
     }//fin metodo
 
 
 
-//     Otro calcular al año.
+//  Otro calcular al año.
+    public Double waterConsumptionPerYear(Integer id)
+    {
+        return this.waterConsumptionPerMonth(id)*12;
+    }//fin metodo
+
+
+    public Double lightConsumptionPerYear(Integer id)
+    {
+        return this.ligthConsumptionPerMonth(id)*12;
+    }//fin metodo
 
 
 
-//     Otro método que sea el índice ecológico.
+//  Otro método que sea el índice ecológico
+    public Double ecoIndex(Integer id) {
+        //Generalizamos los gastos por persona
+        Double waterMediaPerPerson = this.waterConsumptionPerMonth(id) / this.userRepository.getReferenceById(id).getMemberQuantity();
+        Double ligthMediaPerPerson = this.ligthConsumptionPerMonth(id) / this.userRepository.getReferenceById(id).getMemberQuantity();
+        Double devicesMediaPerPerson = this.deviceService.getDevice(id).get().getQuantity() / this.userRepository.getReferenceById(id).getMemberQuantity();
+
+
+        /*Puntuaciones de consumo
+        Gasto ideal de agua por persona =  5000 colones
+        Gasto ideal de luz por persona  8000
+        Electrodomesticos promedios que tiene una persona  5
+         */
+
+        Double waterPoint = waterMediaPerPerson / 5000;
+        Double ligthPoint = ligthMediaPerPerson / 8000;
+        Double devicePoint = devicesMediaPerPerson / 5;
+
+
+        //Se calcula el índice ecológico
+        return 100 * (0.4 * (waterPoint) + 0.4 * (ligthPoint) + 0.2 * (devicePoint));
+
+        /*Indicador de valor
+        0-60 Poco ecológico
+        61-80 Mejorable
+        81-100 Bueno
+        101-120 Muy bueno
+        >120 Excelente
+         */
+    }//fin metodo
 
 
 }//fin clase

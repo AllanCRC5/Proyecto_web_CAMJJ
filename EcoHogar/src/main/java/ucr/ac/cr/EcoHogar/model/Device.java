@@ -25,9 +25,9 @@ public class Device
 
     @PositiveOrZero(message = "El valor no puede ser null ni puede estar vacío")
     @Column(name = "quantity", nullable = false)
-    private Integer quantity;
+    private Double quantity;
 
-    public Device(Integer id, String name, Double usedLight, Integer quantity)
+    public Device(Integer id, String name, Double usedLight, Double quantity)
     {
         this.id = id;
         this.name = name;
@@ -77,12 +77,12 @@ public class Device
         this.usedLight = usedLight;
     }
 
-    public Integer getQuantity()
+    public Double getQuantity()
     {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity)
+    public void setQuantity(Double quantity)
     {
         this.quantity = quantity;
     }
