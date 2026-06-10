@@ -12,9 +12,11 @@ public interface UserRepository extends JpaRepository <User, Integer>
 {
     List<User> findByName(String name);
 
-    User findByEmailAndPassword(String email, String password);
+
+    @Query("SELECT u FROM User u Where u.email = :email AND u.password = :password")
+    User findByEmailAndPassword(@Param("email") String email, @Param("password") String password);
 
     List<User> findAllByOrderByName();
 
     Optional<User> findById(Integer id);
-}
+}//fin clase
