@@ -15,6 +15,15 @@ public class DeviceService
     @Autowired
     private DeviceRepository repository;
 
+
+    //Obtener objeto para el userService
+
+    public Optional<Device> getDevice(Integer id)
+    {
+        return this.repository.findById(id);
+    }//fin metodo
+
+
     //Obtener por id
     public Device findById(int id)
     {

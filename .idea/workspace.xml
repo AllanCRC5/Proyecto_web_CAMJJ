@@ -4,122 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="d374e671-06b4-42a2-8699-37f51dcacbf3" name="Changes" comment="">
+    <list default="true" id="97b0f69b-7a0e-4754-a12c-e1995b052088" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Proyecto_SpringBoot_Programacion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Proyecto_SpringBoot_Programacion.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/model/Device.java" beforeDir="false" afterPath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/model/Device.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/DeviceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/DeviceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/ServiceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/ServiceService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/UserService.java" afterDir="false" />
     </list>
-=======
-    <list default="true" id="cd316927-b2aa-4c4b-8279-aed93d99e49f" name="Changes" comment="" />
->>>>>>> 1e224d7d5761c1eb7ab2a04a7bf1cae08fd6bc42
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-<<<<<<< HEAD
-  <component name="CopilotPersistence">
-    <persistenceIdMap>
-      <entry key="_C:/Users/yossi/OneDrive/Documentos/EcoHogarProycto" value="3EEnoKof6i69dgygpxCWmAxXGuH" />
-    </persistenceIdMap>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;yossimarmontero57-bit&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/AllanCRC5/Proyecto_web_CAMJJ.git&quot;,
-    &quot;accountId&quot;: &quot;c54da8e2-3d9e-4970-962e-723a48c4f599&quot;
-  }
-}</component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/ServiceService.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7,
-  &quot;fromUser&quot;: false
-}</component>
-  <component name="ProjectId" id="3EEnoKof6i69dgygpxCWmAxXGuH" />
-=======
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 3
-}</component>
-  <component name="ProjectId" id="3EF4ucE3hL6D54QlLWFQuDLwxw8" />
->>>>>>> 1e224d7d5761c1eb7ab2a04a7bf1cae08fd6bc42
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="3ExuJHQGs3mUBRE9OnMia4kGxsO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#3 on develop&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/yossi/OneDrive/Documentos/EcoHogarProycto&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="d374e671-06b4-42a2-8699-37f51dcacbf3" name="Changes" comment="" />
-      <created>1779752770113</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1779752770113</updated>
-      <workItem from="1779752771365" duration="454000" />
-      <workItem from="1780623551942" duration="12000" />
-      <workItem from="1780623582825" duration="38000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Application.EcoHogarApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -128,27 +40,36 @@
   }
 }]]></component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="EcoHogarProycto" />
+    <configuration name="EcoHogarApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="DB_URL" value="jdbc:postgresql://ep-dark-waterfall-ap4g26bf-pooler.c-7.us-east-1.aws.neon.tech/neondb?sslmode=require&amp;channel_binding=require DB_USERNAME=neondb_owner DB_PASSWORD=npg_mh7ZIWgPpv8a" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="ucr.ac.cr.EcoHogar.EcoHogarApplication" />
+      <module name="Proyecto_SpringBoot_Programacion" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ucr.ac.cr.EcoHogar.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="EcoHogarProycto" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.EcoHogarApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cd316927-b2aa-4c4b-8279-aed93d99e49f" name="Changes" comment="" />
-      <created>1779761207950</created>
+      <changelist id="97b0f69b-7a0e-4754-a12c-e1995b052088" name="Changes" comment="" />
+      <created>1781132467326</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1779761207950</updated>
+      <updated>1781132467326</updated>
     </task>
     <servers />
   </component>
->>>>>>> 1e224d7d5761c1eb7ab2a04a7bf1cae08fd6bc42
 </project>
