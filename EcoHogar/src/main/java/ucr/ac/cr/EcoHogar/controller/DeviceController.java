@@ -16,22 +16,26 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/EcoHogar")
-public class DeviceController {
+public class DeviceController
+{
 
     @Autowired
     private DeviceService service;
 
 
     @GetMapping("/findAll")
-    public ResponseEntity<?> findAll(){
+    public ResponseEntity<?> findAll()
+    {
         return ResponseEntity.ok(this.service.findAll());
     }
 
 
     @GetMapping("/findById/{id}")
-    public ResponseEntity<?> findById(@PathVariable Integer id){
+    public ResponseEntity<?> findById(@PathVariable Integer id)
+    {
         Device device = this.service.findById(id);
-        if (device == null){
+        if (device == null)
+        {
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).body("El dispositivo electronico con el id " +id+ " no se encuentra registrado");
         }
         return ResponseEntity.ok(device);
@@ -39,7 +43,8 @@ public class DeviceController {
 
 
     @GetMapping("/findByName/{name}")
-    public ResponseEntity<?> findByName(@PathVariable String name){
+    public ResponseEntity<?> findByName(@PathVariable String name)
+    {
         Device device = this.service.findByName(name);
         if (device == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El dispositivo con el nombre "+name+"no se encuentra registrado");
@@ -50,9 +55,11 @@ public class DeviceController {
 
     @GetMapping("/id/{id}")
     public ResponseEntity<?> editDeice(@RequestBody Device deviceE, @PathVariable Integer id, BindingResult result){
-        if (result.hasErrors()){
+        if (result.hasErrors())
+        {
             Map<String, String> errors = new HashMap<>();
-            for (FieldError error : result.getFieldErrors()){
+            for (FieldError error : result.getFieldErrors())
+            {
                 errors.put(error.getField(), error.getDefaultMessage());
             }
         }
@@ -68,13 +75,15 @@ public class DeviceController {
     public ResponseEntity<?> save(@Validated @RequestBody Device device, BindingResult result){
         if (result.hasErrors()){
             Map<String, String> errors = new HashMap<>();
-            for (FieldError error : result.getFieldErrors()){
+            for (FieldError error : result.getFieldErrors())
+            {
                 errors.put(error.getField(), error.getDefaultMessage());
             }
             return ResponseEntity.badRequest().body(errors);
         }
         Device devicePrue = this.service.findByName(device.getName());
-        if (devicePrue != null){
+        if (devicePrue != null)
+        {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("El dispositivo "+device.getName()+" ya se encuentra registrado!");
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(device));
@@ -82,9 +91,11 @@ public class DeviceController {
 
 
     @DeleteMapping("/id/{id}")
-    public ResponseEntity<?> deleteDevice(@PathVariable Integer id){
+    public ResponseEntity<?> deleteDevice(@PathVariable Integer id)
+    {
         Device device = this.service.findById(id);
-        if (device == null){
+        if (device == null)
+        {
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).body("El dispositivo electronico con el id " +id+ " no se encuentra registrado");
         }
         this.service.deleteDevice(id);

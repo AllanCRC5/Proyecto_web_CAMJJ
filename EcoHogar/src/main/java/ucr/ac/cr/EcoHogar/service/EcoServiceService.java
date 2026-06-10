@@ -1,11 +1,11 @@
 package ucr.ac.cr.EcoHogar.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import ucr.ac.cr.EcoHogar.model.EcoService;
 import ucr.ac.cr.EcoHogar.repository.EcoServiceRepository;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 @Service
 public class EcoServiceService
@@ -13,6 +13,14 @@ public class EcoServiceService
 
     @Autowired
     private EcoServiceRepository repository;
+
+
+
+    //Get de las variables necesarias en el UserService
+    public Optional<EcoService> getEcoService(Integer id)
+    {
+        return this.repository.findById(id);
+    }//fin metodo
 
 
     //Obtener todos
@@ -59,12 +67,6 @@ public class EcoServiceService
         if(service.isPresent())
         {
              return this.repository.save(editService);
-//        Service service = serviceOp.get();
-//        service.setName(editService.getName());
-//        service.setwaterCostPerlit(editService.getwaterCostPerlit());
-//        service.setHoursOfLightPd(serviceEdit.getHoursOfLight());
-//        service.setLightCostPerHour(serviceEdit.getLightCostPerHour());
-//        service.setLitersOfWaterConsumedPd(serviceEdit.getLitersOfWaterConsumed());
         }//if
         return null;
     }
@@ -77,4 +79,4 @@ public class EcoServiceService
     }
 
 
-}
+}//fin clase
