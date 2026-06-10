@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
-import org.apache.catalina.Service;
 
 @Entity// para decir que la clase sera una entidad
 @Table(name = "tb_usuario")// se renombra la tabla para evitar un problema con la base de datos
@@ -31,6 +30,7 @@ public class User
     @Column(name = "password",  nullable = false, length = 30)
     private  String password;
 
+
     // Conexion con clase Device
     @ManyToOne
     @JoinColumn
@@ -53,6 +53,7 @@ public class User
             )
     private EcoService ecoService;
 
+
     public User()
     {
 
@@ -67,9 +68,6 @@ public class User
         this.email = email;
         this.password = password;
     }
-
-
-
 
 
 

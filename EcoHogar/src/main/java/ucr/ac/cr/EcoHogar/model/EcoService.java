@@ -58,7 +58,6 @@ public class EcoService
         //Valores pre-establecidos de costo de agua y luz en colones y por hora
         this.lightCostPerHour = 100.0;
         this.waterCostPerlit = 0.6;
-
     }
 
     public Double getWaterCostPerlit()
