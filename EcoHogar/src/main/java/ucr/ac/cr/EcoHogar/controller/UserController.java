@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ucr.ac.cr.EcoHogar.model.DTO.UserLoginDto;
 import ucr.ac.cr.EcoHogar.model.User;
 import ucr.ac.cr.EcoHogar.service.UserService;
 
@@ -20,6 +21,24 @@ public class UserController
 {
     @Autowired
     private UserService userService;
+
+
+    @PostMapping("login")
+    public ResponseEntity<?> login (@Validated @RequestBody UserLoginDto dto, BindingResult result)
+    {
+        if (result.hasErrors()) {
+            Map<String, String> errors = new HashMap<>();
+            for (FieldError error : result.getFieldErrors()) {
+                errors.put(error.getField(), error.getDefaultMessage());
+            }
+            return ResponseEntity.badRequest().body(errors);
+        }
+        User user = this.userService.login(dto.getEmail(), dto.getPassword());
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectos");
+        }
+        return ResponseEntity.ok("Bienvenido "+user.getName());
+    }
 
     //Obtener todos-funcionaa
     @GetMapping

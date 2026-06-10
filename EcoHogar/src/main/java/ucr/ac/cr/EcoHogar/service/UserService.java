@@ -22,6 +22,12 @@ public class UserService
     @Autowired
     private DeviceService deviceService;
 
+
+    //Login
+    public User login(String email, String password)
+    {
+        return this.userRepository.login(email, password);
+    }
     //Obtener todos
     public List<User> findAll()
     {
