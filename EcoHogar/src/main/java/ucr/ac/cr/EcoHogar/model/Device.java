@@ -1,7 +1,10 @@
 package ucr.ac.cr.EcoHogar.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+
+import java.util.List;
 
 @Entity// para decir que la clase sera una entidad
 public class Device
@@ -33,7 +36,7 @@ public class Device
     }
 
     //crear relaciones
-    @OneToMany(mappedBy = "Device")//crea la llave foránea
+    @OneToMany(mappedBy = "device")//crea la llave foránea
     @JsonIgnore
     private List<User> listUser;
 

@@ -1,8 +1,9 @@
 package ucr.ac.cr.EcoHogar.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import ucr.ac.cr.EcoHogar.model.Service;
-import ucr.ac.cr.EcoHogar.repository.ServiceRepository;
+import org.springframework.stereotype.Service;
+import ucr.ac.cr.EcoHogar.model.EcoService;
+import ucr.ac.cr.EcoHogar.repository.EcoServiceRepository;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,27 +12,27 @@ public class EcoServiceService
 {
 
     @Autowired
-    private ServiceRepository repository;
+    private EcoServiceRepository repository;
 
 
     //Obtener todos
-    public List<Service>findAll()
+    public List<EcoService>findAll()
     {
         return this.repository.findAll();
     }
 
 
     //Obtener por nombre
-    public List<Service> findByName(String name)
+    public List<EcoService> findByName(String name)
     {
         return this.repository.findByName(name);
     }
 
 
     //Guardar servicio
-    public Service save(Service service)
+    public EcoService save(EcoService service)
     {
-        Optional<Service>optional=this.repository.findById(service.getId());
+        Optional<EcoService>optional=this.repository.findById(service.getId());
         if (optional.isPresent()){
             return null;
         }
@@ -40,9 +41,9 @@ public class EcoServiceService
 
 
     //buscar por id
-    public Service findByID(Integer id)
+    public EcoService findByID(Integer id)
     {
-        Optional<Service> optional=this.repository.findById(id);
+        Optional<EcoService> optional=this.repository.findById(id);
         if (optional.isPresent())
         {
             return optional.get();
@@ -52,9 +53,9 @@ public class EcoServiceService
 
 
     //Editar
-    public Service editService(Integer id, Service editService)
+    public EcoService editService(Integer id, EcoService editService)
     {
-        Optional <Service> service = this.repository.findById(id);
+        Optional <EcoService> service = this.repository.findById(id);
         if(service.isPresent())
         {
              return this.repository.save(editService);
