@@ -1,11 +1,12 @@
 package ucr.ac.cr.EcoHogar.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
+
+import java.util.List;
 
 @Entity// para decir que la clase sera una entidad
 public class EcoService
@@ -37,7 +38,7 @@ public class EcoService
     @Column(name = "litersOfWaterConsumedPd", nullable = false)
     private Double litersOfWaterConsumedPd;
 
-    public Service(Double waterCostPerHour, Double hoursOfLightPd, Double lightCostPerHour, Double litersOfWaterConsumedPd)
+    public EcoService(Double waterCostPerHour, Double hoursOfLightPd, Double lightCostPerHour, Double litersOfWaterConsumedPd)
     {
         this.waterCostPerlit = waterCostPerHour;
         this.hoursOfLightPd = hoursOfLightPd;
@@ -47,15 +48,15 @@ public class EcoService
 
 
     //crear relaciones
-    @OneToMany(mappedBy = "EcoService")//crea la llave foránea
+    @OneToMany(mappedBy = "ecoService")//crea la llave foránea
     @JsonIgnore
     private List<User> listUser;
 
 
-    public Service()
+    public EcoService()
     {
         //Valores pre-establecidos de costo de agua y luz en colones y por hora
-        this.lightCostPerHour = 100;
+        this.lightCostPerHour = 100.0;
         this.waterCostPerlit = 0.6;
 
     }

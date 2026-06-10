@@ -8,8 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ucr.ac.cr.EcoHogar.model.Service;
-import ucr.ac.cr.EcoHogar.service.ServiceService;
+import ucr.ac.cr.EcoHogar.model.EcoService;
+import ucr.ac.cr.EcoHogar.service.EcoServiceService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +22,7 @@ public class EcoServiceController
 
 
     @Autowired
-    private ServiceService service;
+    private EcoServiceService service;
 
     @GetMapping("/all")
     public ResponseEntity<?>findAll()
@@ -40,7 +40,7 @@ public class EcoServiceController
     }
 
     @PostMapping("/save")
-    public ResponseEntity<?>save(@Validated @RequestBody Service service, BindingResult result){
+    public ResponseEntity<?>save(@Validated @RequestBody EcoService service, BindingResult result){
         if (result.hasErrors()){
             Map<String, String>errors=new HashMap<>();
             for (FieldError error : result.getFieldErrors()){
@@ -48,7 +48,7 @@ public class EcoServiceController
             }
             return ResponseEntity.badRequest().body(errors);
         }
-        Service service1=this.service.save(service);
+        EcoService service1=this.service.save(service);
         if (service1==null){
             return ResponseEntity.status(HttpStatus.CONFLICT).body(
                     "El servicio con ese id ya está registrado");

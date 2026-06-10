@@ -114,17 +114,17 @@ public class UserService
     //IDEA: Pedir horas de agua por DÍA y electricidad por DÍA.
     // Otro calcular al mes
 
-    public Double waterConsumptionPerMonth(Double hoursPerDay)
-    {
-        return hoursPerDay*30;
-    }//fin metodo
+//    public Double waterConsumptionPerMonth(Double hoursPerDay)
+//    {
+//        return hoursPerDay*30;
+//    }//fin metodo
 
-
-    public Double LigthConsumptionPerMonth(Double hoursPerDay)
-    {
-        private hourCost = 0;
-        return (hoursPerDay*service.)*30;
-    }//fin metodo
+//
+//    public Double LigthConsumptionPerMonth(Double hoursPerDay)
+//    {
+//        Double hourCost = 0;
+//        return (hoursPerDay*service.)*30;
+//    }//fin metodo
 
 
     // Otro calcular al año.

@@ -1,12 +1,10 @@
 package ucr.ac.cr.EcoHogar.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
+import org.apache.catalina.Service;
 
 @Entity// para decir que la clase sera una entidad
 @Table(name = "tb_usuario")// se renombra la tabla para evitar un problema con la base de datos
@@ -33,6 +31,28 @@ public class User
     @Column(name = "password",  nullable = false, length = 30)
     private  String password;
 
+    // Conexion con clase Device
+    @ManyToOne
+    @JoinColumn
+            (
+                    name = "Device_id",
+                    nullable = false,
+                    foreignKey = @ForeignKey(name = "fk_user_device")
+            )
+    private Device device; // el nombre de la referencia debe ser igual al del objeto
+
+
+
+    //Conexion con clase Service
+    @ManyToOne
+    @JoinColumn
+            (
+                    name = "EcoService_id",
+                    nullable = false,
+                    foreignKey = @ForeignKey(name = "fk_user_ecoService")
+            )
+    private EcoService ecoService;
+
     public User()
     {
 
@@ -49,27 +69,7 @@ public class User
     }
 
 
-    // Conexion con clase Device
-    @ManyToOne
-    @JoinColumn
-            (
-                    name = "Device_id",
-                    nullable = false,
-                    foreingnKey = @ForeignKey(name = "fk_user_device")
-            )
-    private Device Device; // el nombre de la referencia debe ser igual al del objeto
 
-
-
-    //Conexion con clase Service
-    @ManyToOne
-    @JoinColumn
-            (
-                    name = "EcoService_id",
-                    nullable = false,
-                    foreignKey = @ForeignKey(name = "fk_user_ecoService")
-            )
-    private Service Service;
 
 
 

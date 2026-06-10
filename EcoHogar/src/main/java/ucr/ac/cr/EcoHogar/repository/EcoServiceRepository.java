@@ -1,13 +1,13 @@
 package ucr.ac.cr.EcoHogar.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ucr.ac.cr.EcoHogar.model.Service;
+import ucr.ac.cr.EcoHogar.model.EcoService;
 
 import java.util.List;
 
-public interface EcoServiceRepository extends JpaRepository<Service, Integer>
+public interface EcoServiceRepository extends JpaRepository<EcoService, Integer>
 {
-    List<Service>findAll();
-    List<Service> findByName(String name);//Aqui el problema, no está bien escrita la consulta
-    Service findbyId(Integer id);
+    List<EcoService>findAll();
+    List<EcoService> findByName(String name);//Aqui el problema, no está bien escrita la consulta
+    EcoService findbyId(Integer id);
 }//fin clase
