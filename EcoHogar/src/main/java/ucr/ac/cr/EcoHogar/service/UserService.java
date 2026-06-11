@@ -2,11 +2,9 @@ package ucr.ac.cr.EcoHogar.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ucr.ac.cr.EcoHogar.model.DTO.UserLoginDto;
 import ucr.ac.cr.EcoHogar.model.User;
 import ucr.ac.cr.EcoHogar.repository.UserRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,137 +15,147 @@ public class UserService
     private UserRepository userRepository;
 
     @Autowired
-    private EcoServiceService ecoServiceService;
-
-    @Autowired
     private DeviceService deviceService;
 
 
-    //Login
+    // Buscar todos
+    public List<User> findAll()
+    {
+        return this.userRepository.findAll();
+    }
+
+
+    // Buscar por ID
+    public User findByID(Integer id)
+    {
+        Optional<User> opt = this.userRepository.findById(id);
+
+        if (opt.isPresent())
+        {
+            return opt.get();
+        }
+
+        return null;
+    }
+
+
+    // Buscar por nombre
+    public List<User> findByName(String name)
+    {
+        return this.userRepository.findByName(name);
+    }
+
+
+    // Login
     public User login(String email, String password)
     {
         return this.userRepository.login(email, password);
     }
-    //Obtener todos
-    public List<User> findAll()
-    {
-        return this.userRepository.findAll();
-    }//fin metodo
 
 
-    //Obtener por id
-    public User findByID(Integer id)
-    {
-        Optional<User> optional=this.userRepository.findById(id);
-        if (optional.isPresent())
-        {
-            return optional.get();
-        }
-        return null;
-    }//fin metodo
-
-
-    //Obtener por nombre
-    public List<User> findByName(String name)
-    {
-        return this.userRepository.findByName(name);
-    }//fin metodo
-
-
-    //Metodo editar usuario
-    public User editUser(Integer id, User userEdit)
-    {
-        Optional<User> userOp=this.userRepository.findById(id);
-        if (userOp.isPresent())
-        {
-            User user=userOp.get();
-            user=userEdit;
-            return this.userRepository.save(user);
-        }
-        return null;
-    }//fin metodo
-
-
-    //Metodo save
+    // Guardar usuario
     public User save(User user)
     {
-        Optional<User> opt=this.userRepository.findById(user.getId());
-        if(opt.isPresent()){
+        //verificar que el id no venga vacio
+        if(user.getId() == null)
+        {
             return null;
         }
-        return this.userRepository.save(user);
-    }//fin metodo
 
+        Optional<User> opt = this.userRepository.findById(user.getId());
 
-    //Borrar usuario
-     public void deleteUser(Integer id)
-     {
-         this.userRepository.deleteById(id);
-     }//fin metodo
-
-
-//metodo convertir usuario a DTO
-    public UserLoginDto convertUserDTO(User user)
-    {
-        UserLoginDto dto=new UserLoginDto();
-        dto.setPassword(user.getPassword());
-        dto.setEmail(user.getEmail());
-        return dto;
-    }//fin metodo
-
-
-//metodo convertir lista a DTO
-    public List<UserLoginDto> convertListDTO(List<User> listUser)
-    {
-        List<UserLoginDto> listDTO = new ArrayList<>();
-        for (User user : listUser)
+        // verifica si existe el usuario con ese id
+        if(opt.isPresent())
         {
-            listDTO.add(this.convertUserDTO(user));
+            return null;
         }
-        return listDTO;
+
+        return this.userRepository.save(user);
+
     }//fin metodo
 
-
-    public List<User> findAllByOrderByName()
+    // Editar usuario
+    public User editUser(Integer id, User user)
     {
-        return this.userRepository.findAllByOrderByName();
-    }//fin metodo
+        User userEdit = this.findByID(id);
+
+        if (userEdit == null)
+        {
+            return null;
+        }
+
+        userEdit.setName(user.getName());
+        userEdit.setMemberQuantity(user.getMemberQuantity());
+        userEdit.setEmail(user.getEmail());
+        userEdit.setPassword(user.getPassword());
+        userEdit.setDevice(user.getDevice());
+        userEdit.setEcoService(user.getEcoService());
+
+        return this.userRepository.save(userEdit);
+    }
 
 
-
-
-//    IDEA: Pedir horas de agua por DÍA y electricidad por DÍA.
-//     Otro calcular al mes
-
+    // Consumo de agua mensual
     public Double waterConsumptionPerMonth(Integer id)
     {
-        return (ecoServiceService.getEcoService(id).get().getLitersOfWaterConsumedPd()*ecoServiceService.getEcoService(id).get().getWaterCostPerlit()) *30;
-    }//fin metodo
+        User user = this.findByID(id);
+
+        if (user == null || user.getEcoService() == null)
+        {
+            return null;
+        }
+
+        return user.getEcoService().getLitersOfWaterConsumedPd() * 30;
+    }
 
 
+    // Consumo de luz mensual
     public Double ligthConsumptionPerMonth(Integer id)
     {
-        return (ecoServiceService.getEcoService(id).get().getHoursOfLightPd()*ecoServiceService.getEcoService(id).get().getLightCostPerHour())*30;
-    }//fin metodo
+        User user = this.findByID(id);
+
+        if (user == null || user.getEcoService() == null)
+        {
+            return null;
+        }
+
+        return user.getEcoService().getHoursOfLightPd()
+                * user.getEcoService().getLightCostPerHour()
+                * 30;
+    }
 
 
-
-//  Otro calcular al año.
+    // Consumo de agua anual
     public Double waterConsumptionPerYear(Integer id)
     {
-        return this.waterConsumptionPerMonth(id)*12;
-    }//fin metodo
+        Double month = this.waterConsumptionPerMonth(id);
+
+        if (month == null)
+        {
+            return null;
+        }
+
+        return month * 12;
+    }
 
 
+    // Consumo de luz anual
     public Double lightConsumptionPerYear(Integer id)
     {
-        return this.ligthConsumptionPerMonth(id)*12;
-    }//fin metodo
+        Double month = this.ligthConsumptionPerMonth(id);
+
+        if (month == null)
+        {
+            return null;
+        }
+
+        return month * 12;
+    }
 
 
-
-//  Otro método que sea el índice ecológico
-    public Double ecoIndex(Integer id) {
+    // Eco índice
+    public Double ecoIndex(Integer id)
+    {
         //Generalizamos los gastos por persona
         Double waterMediaPerPerson = this.waterConsumptionPerMonth(id) / this.userRepository.getReferenceById(id).getMemberQuantity();
         Double ligthMediaPerPerson = this.ligthConsumptionPerMonth(id) / this.userRepository.getReferenceById(id).getMemberQuantity();
@@ -175,7 +183,5 @@ public class UserService
         101-120 Muy bueno
         >120 Excelente
          */
-    }//fin metodo
-
-
-}//fin clase
+    }
+}
