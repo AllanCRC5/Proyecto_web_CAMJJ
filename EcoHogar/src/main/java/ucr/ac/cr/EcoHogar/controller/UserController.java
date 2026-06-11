@@ -117,4 +117,70 @@ public class UserController
         }//fin if
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }//fin metodo
+
+
+    //El consume de agua al mes
+    @GetMapping("/agua/{id}")
+    public ResponseEntity<?> waterConsumptionPerMonth(@PathVariable Integer id){
+        User user = this.userService.findByID(id);
+
+        if(user == null)
+        {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("No se ha podido encontrar un usuario con ese id");
+        }//fin if
+        return ResponseEntity.ok().body(this.userService.waterConsumptionPerMonth(id));
+    }
+
+
+    //El consume de luz al mes
+    @GetMapping("/luz/{id}")
+    public ResponseEntity<?> lightConsumptionPerMonth(@PathVariable Integer id){
+        User user = this.userService.findByID(id);
+
+        if(user == null)
+        {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("No se ha podido encontrar un usuario con ese id");
+        }//fin if
+        return ResponseEntity.ok().body(this.userService.ligthConsumptionPerMonth(id));
+    }
+
+
+    //El consume de agua al año
+    @GetMapping("/agua-año/{id}")
+    public ResponseEntity<?> waterConsumptionPerYear(@PathVariable Integer id){
+        User user = this.userService.findByID(id);
+
+        if(user == null)
+        {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("No se ha podido encontrar un usuario con ese id");
+        }//fin if
+        return ResponseEntity.ok().body(this.userService.waterConsumptionPerYear(id));
+    }
+
+
+    //El consume de luz al año
+    @GetMapping("/luz-año/{id}")
+    public ResponseEntity<?> lightConsumptionPerYear(@PathVariable Integer id){
+        User user = this.userService.findByID(id);
+
+        if(user == null)
+        {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("No se ha podido encontrar un usuario con ese id");
+        }//fin if
+        return ResponseEntity.ok().body(this.userService.lightConsumptionPerYear(id));
+    }
+
+
+    //El consume de luz al año
+    @GetMapping("/eco-indice/{id}")
+    public ResponseEntity<?> ecoIndex(@PathVariable Integer id){
+        User user = this.userService.findByID(id);
+
+        if(user == null)
+        {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("No se ha podido encontrar un usuario con ese id");
+        }//fin if
+        return ResponseEntity.ok().body(this.userService.ecoIndex(id));
+    }
+
 }//fin clase

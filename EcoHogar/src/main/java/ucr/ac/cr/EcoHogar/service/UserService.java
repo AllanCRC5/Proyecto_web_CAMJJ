@@ -90,9 +90,8 @@ public class UserService
     public UserLoginDto convertUserDTO(User user)
     {
         UserLoginDto dto=new UserLoginDto();
-        dto.setId(user.getId());
+        dto.setPassword(user.getPassword());
         dto.setEmail(user.getEmail());
-        dto.setName(user.getName());
         return dto;
     }//fin metodo
 
