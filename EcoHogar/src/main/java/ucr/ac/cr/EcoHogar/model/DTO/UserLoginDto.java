@@ -13,10 +13,9 @@ public class UserLoginDto {
 private String email;
     @NotBlank(message = "La contraseña es obligatoria")
 
-    @Pattern(regexp = "^(?=.[A-Z])(?=.\\d)(?=.[@$!%?&]).+$",
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%?&]).{8,}$",
             message = "La contraseña debe tener mínimo 8 caracteres, una mayúscula, un número y un símbolo"
     )
-
 private String password;
 
     public UserLoginDto()

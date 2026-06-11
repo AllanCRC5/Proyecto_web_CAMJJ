@@ -109,4 +109,15 @@ public class EcoService
     {
         this.litersOfWaterConsumedPd = litersOfWaterConsumedPd;
     }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
 }//fin clase

@@ -5,11 +5,11 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 
-@Entity// para decir que la clase sera una entidad
-@Table(name = "tb_usuario")// se renombra la tabla para evitar un problema con la base de datos
+@Entity
+@Table(name = "tb_usuario")
 public class User
 {
-    @Id// establece que el dato de abajo sera la llave foranea
+    @Id
     @PositiveOrZero(message = "El valor no puede ser null ni estar vacío")
     @Column(name = "id", nullable = false)
     private Integer id;
@@ -27,31 +27,26 @@ public class User
     private String email;
 
     @NotBlank(message = "El valor no puede ser null ni estar vacío")
-    @Column(name = "password",  nullable = false, length = 30)
-    private  String password;
+    @Column(name = "password", nullable = false, length = 30)
+    private String password;
 
 
-    // Conexion con clase Device
     @ManyToOne
-    @JoinColumn
-            (
-                    name = "Device_id",
-                    nullable = false,
-                    foreignKey = @ForeignKey(name = "fk_user_device")
-            )
-    private Device Device;
+    @JoinColumn(
+            name = "device_id",
+            nullable = true,
+            foreignKey = @ForeignKey(name = "fk_user_device")
+    )
+    private Device device;
 
 
-
-    //Conexion con clase Service
     @ManyToOne
-    @JoinColumn
-            (
-                    name = "EcoService_id",
-                    nullable = false,
-                    foreignKey = @ForeignKey(name = "fk_user_ecoService")
-            )
-    private EcoService EcoService;
+    @JoinColumn(
+            name = "eco_service_id",
+            nullable = true,
+            foreignKey = @ForeignKey(name = "fk_user_ecoService")
+    )
+    private EcoService ecoService;
 
 
     public User()
@@ -59,8 +54,11 @@ public class User
 
     }
 
-
-    public User(Integer id, String name, Integer memberQuantity, String email, String password)
+    public User(Integer id,
+                String name,
+                Integer memberQuantity,
+                String email,
+                String password)
     {
         this.id = id;
         this.name = name;
@@ -70,15 +68,16 @@ public class User
     }
 
 
+    // getters - setters
 
     public Integer getId()
     {
         return id;
     }
 
-    public void setId(Integer idFamily)
+    public void setId(Integer id)
     {
-        this.id = idFamily;
+        this.id = id;
     }
 
     public String getName()
@@ -123,21 +122,22 @@ public class User
 
     public Device getDevice()
     {
-        return Device;
+        return device;
     }
 
     public void setDevice(Device device)
     {
-        Device = device;
+        this.device = device;
     }
 
     public EcoService getEcoService()
     {
-        return EcoService;
+        return ecoService;
     }
 
     public void setEcoService(EcoService ecoService)
     {
-        EcoService = ecoService;
+        this.ecoService = ecoService;
     }
-}//fin clase
+
+}
