@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97b0f69b-7a0e-4754-a12c-e1995b052088" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Proyecto_SpringBoot_Programacion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Proyecto_SpringBoot_Programacion.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/model/Device.java" beforeDir="false" afterPath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/model/Device.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/DeviceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/DeviceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EcoHogar/src/main/java/ucr/ac/cr/EcoHogar/service/UserService.java" afterDir="false" />
-    </list>
+    <list default="true" id="97b0f69b-7a0e-4754-a12c-e1995b052088" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,10 +13,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="3ExuJHQGs3mUBRE9OnMia4kGxsO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,7 +29,8 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "develop",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Allan/Documents/UCR/Tercer semestre/Programación/Proyecto_SpringBoot_Programacion"
   }
 }]]></component>
   <component name="RunManager">

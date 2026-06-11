@@ -72,7 +72,8 @@ public class UserService
     public User save(User user)
     {
         Optional<User> opt=this.userRepository.findById(user.getId());
-        if(opt.isPresent()){
+        if(opt.isPresent())
+        {
             return null;
         }
         return this.userRepository.save(user);
@@ -147,7 +148,8 @@ public class UserService
 
 
 //  Otro método que sea el índice ecológico
-    public Double ecoIndex(Integer id) {
+    public Double ecoIndex(Integer id)
+    {
         //Generalizamos los gastos por persona
         Double waterMediaPerPerson = this.waterConsumptionPerMonth(id) / this.userRepository.getReferenceById(id).getMemberQuantity();
         Double ligthMediaPerPerson = this.ligthConsumptionPerMonth(id) / this.userRepository.getReferenceById(id).getMemberQuantity();

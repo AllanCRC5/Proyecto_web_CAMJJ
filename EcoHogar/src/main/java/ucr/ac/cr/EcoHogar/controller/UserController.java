@@ -73,6 +73,7 @@ public class UserController
 //        return ResponseEntity.ok(this.userService.findByName(name));
 //    }//fin metodo
 
+
     //Editar-funciona
     @PutMapping("/id/{id}")
     public ResponseEntity<?>edit(@Validated @PathVariable Integer id, @RequestBody User user, BindingResult result)
@@ -95,6 +96,7 @@ public class UserController
         }//fin if
         return ResponseEntity.ok(this.userService.editUser(id, user));
     }//fin metodo
+
 
     //Guardar usuario
     @PostMapping("/save")
@@ -119,6 +121,7 @@ public class UserController
     }//fin metodo
 
 
+
     //El consume de agua al mes
     @GetMapping("/agua/{id}")
     public ResponseEntity<?> waterConsumptionPerMonth(@PathVariable Integer id){
@@ -132,9 +135,10 @@ public class UserController
     }
 
 
-    //El consume de luz al mes
+    //El consumo de luz al mes
     @GetMapping("/luz/{id}")
-    public ResponseEntity<?> lightConsumptionPerMonth(@PathVariable Integer id){
+    public ResponseEntity<?> lightConsumptionPerMonth(@PathVariable Integer id)
+    {
         User user = this.userService.findByID(id);
 
         if(user == null)
@@ -145,9 +149,10 @@ public class UserController
     }
 
 
-    //El consume de agua al año
+    //El consumo de agua al año
     @GetMapping("/agua-año/{id}")
-    public ResponseEntity<?> waterConsumptionPerYear(@PathVariable Integer id){
+    public ResponseEntity<?> waterConsumptionPerYear(@PathVariable Integer id)
+    {
         User user = this.userService.findByID(id);
 
         if(user == null)
@@ -160,7 +165,8 @@ public class UserController
 
     //El consume de luz al año
     @GetMapping("/luz-año/{id}")
-    public ResponseEntity<?> lightConsumptionPerYear(@PathVariable Integer id){
+    public ResponseEntity<?> lightConsumptionPerYear(@PathVariable Integer id)
+    {
         User user = this.userService.findByID(id);
 
         if(user == null)
@@ -173,7 +179,8 @@ public class UserController
 
     //El consume de luz al año
     @GetMapping("/eco-indice/{id}")
-    public ResponseEntity<?> ecoIndex(@PathVariable Integer id){
+    public ResponseEntity<?> ecoIndex(@PathVariable Integer id)
+    {
         User user = this.userService.findByID(id);
 
         if(user == null)

@@ -39,7 +39,7 @@ public class User
                     nullable = false,
                     foreignKey = @ForeignKey(name = "fk_user_device")
             )
-    private Device device; // el nombre de la referencia debe ser igual al del objeto
+    private Device Device;
 
 
 
@@ -51,7 +51,7 @@ public class User
                     nullable = false,
                     foreignKey = @ForeignKey(name = "fk_user_ecoService")
             )
-    private EcoService ecoService;
+    private EcoService EcoService;
 
 
     public User()
@@ -119,5 +119,25 @@ public class User
     public void setPassword(String password)
     {
         this.password = password;
+    }
+
+    public Device getDevice()
+    {
+        return Device;
+    }
+
+    public void setDevice(Device device)
+    {
+        Device = device;
+    }
+
+    public EcoService getEcoService()
+    {
+        return EcoService;
+    }
+
+    public void setEcoService(EcoService ecoService)
+    {
+        EcoService = ecoService;
     }
 }//fin clase

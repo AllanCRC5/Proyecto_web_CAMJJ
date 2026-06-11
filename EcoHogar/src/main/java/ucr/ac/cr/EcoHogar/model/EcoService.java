@@ -48,7 +48,7 @@ public class EcoService
 
 
     //crear relaciones
-    @OneToMany(mappedBy = "ecoService")//crea la llave foránea
+    @OneToMany(mappedBy = "EcoService")//crea la llave foránea
     @JsonIgnore
     private List<User> listUser;
 
