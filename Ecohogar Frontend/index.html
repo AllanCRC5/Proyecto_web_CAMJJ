@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco Hogar - Familias</title>
+  <link rel="stylesheet" href="css/indexStyle.css">
+</head>
+<body>
+  <header>
+    <img src="Logo.png" alt="Eco Hogar">
+    <h1>Panel de Consumo Familiar</h1>
+  </header>
+
+  <main class="container">
+    <h2>Listado de Familias</h2>
+
+    <!-- Filtros -->
+    <div class="filters">
+      <label for="memberFilter">Filtrar por cantidad de miembros:</label>
+      <select id="memberFilter">
+        <option value="all">Todas</option>
+        <option value="1-3">1 a 3 miembros</option>
+        <option value="4-6">4 a 6 miembros</option>
+        <option value="7+">Más de 7 miembros</option>
+      </select>
+      <button id="applyFilter">Aplicar filtro</button>
+    </div>
+
+    <!-- Tabla -->
+    <table id="familyTable">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Miembros</th>
+          <th>Consumo Agua (mensual)</th>
+          <th>Consumo Luz (mensual)</th>
+          <th>Índice Ecológico</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+  
+</body>
+</html>

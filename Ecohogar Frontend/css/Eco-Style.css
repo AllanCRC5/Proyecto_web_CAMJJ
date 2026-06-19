@@ -1,0 +1,165 @@
+/* Paleta base */
+:root {
+  --verde: #2e8b57;
+  --amarillo: #f2e600;
+  --gris-claro: #e6e6e6;
+  --gris-oscuro: #333;
+  --blanco: #fff;
+  --celeste: rgb(0, 162, 255);
+}
+
+/* General */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: var(--gris-claro);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;    /* Ocupa toda la altura de la pantalla */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+}
+
+/* Encabezado */
+header {
+  background-color: var(--blanco);
+  display: block;
+  position: sticky;
+  justify-content: space-between;
+  align-items: top;
+  padding: 10px 30px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Principal */
+main {
+  margin-top: 80px; /* Deja espacio para el header */
+  display: flex;
+  justify-content: center;
+}
+
+/* Logo */
+header img {
+  height: 70px;
+}
+
+/*.menu-icon {
+  width: 30px;
+  height: 3px;
+  background-color: var(--gris-oscuro);
+  position: relative;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background-color: var(--gris-oscuro);
+  left: 0;
+}
+
+.menu-icon::before {
+  top: -8px;
+}
+
+.menu-icon::after {
+  top: 8px;
+} */
+
+/* Contenedor principal */
+.container {
+  max-width: 100%;
+  margin: 60px auto;
+  background-color: var(--blanco);
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Contenedores de los input y label de ingreso de datos */
+.signin-container, .login-container {
+  background-color: var(--amarillo);
+  justify-self: center;
+  padding: 30px 70px;
+  border-radius: 10px;
+  width: 400px;
+}
+
+/* Títulos */
+h1{
+    color: var(--verde);
+    text-align: center;
+    font-style: bold;
+    text-shadow: 2px 2px black;
+}
+h2, h3 {
+  text-align: center;
+  color: var(--gris-oscuro);
+  margin-bottom: 20px;
+}
+
+/* Textos de los input */
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: var(--gris-oscuro);
+}
+
+/* Campos de texto */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  position: flex;
+  justify-content: right;
+}
+
+/* Botón */
+button {
+  width: 30%;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: var(--verde);
+  color: var(--blanco);
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Hover del botón */
+button:hover {
+  background-color: #256b45;
+}
+
+/* Texto general de párrafo */
+p {
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Texto que cambia pantallas */
+a {
+  color: var(--celeste);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/*Hover del texto que cambia pantallas*/
+a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+/* Mensajes */
+#message {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 15px;
+}

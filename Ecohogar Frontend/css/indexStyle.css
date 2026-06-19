@@ -1,0 +1,154 @@
+/* Paleta base */
+:root {
+  --verde: #2e8b57;
+  --amarillo: #f2e600;
+  --gris-claro: #e6e6e6;
+  --gris-oscuro: #333;
+  --blanco: #fff;
+  --celeste: rgb(0, 162, 255);
+}
+
+/* General */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: var(--gris-claro);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;    /* Ocupa toda la altura de la pantalla */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+}
+
+/* Encabezado */
+header {
+  background-color: var(--blanco);
+  display: block;
+  position: sticky;
+  justify-content: space-between;
+  align-items: top;
+  padding: 10px 30px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Principal */
+main {
+  align-self: normal;
+  display: flexbox;
+  justify-content: center;
+}
+
+/* Logo */
+header img {
+  height: 70px;
+}
+
+.container {
+  max-width: 100%;
+  margin: 60px auto;
+  margin-top: 0px;
+  background-color: var(--blanco);
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Títulos */
+h2, h3 {
+  text-align: center;
+  color: var(--gris-oscuro);
+  margin-bottom: 20px;
+}
+
+/* Botón */
+button {
+  width: 30%;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: var(--verde);
+  color: var(--blanco);
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Hover del botón */
+button:hover {
+  background-color: #256b45;
+}
+
+/* Texto general de párrafo */
+p {
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Mensajes */
+#message {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+
+/* Contenedor de filtros */
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; /* Espacio entre elementos */
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Permite que se acomode en pantallas pequeñas */
+}
+
+.filters label {
+  font-weight: bold;
+  color: #333;
+}
+
+.filters select {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* Botón de filtro */
+#applyFilter {
+  background-color: #2e8b57;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px; /* Tamaño más equilibrado */
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#applyFilter:hover {
+  background-color: #256b45;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color:var(--amarillo);
+  color: #333;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
