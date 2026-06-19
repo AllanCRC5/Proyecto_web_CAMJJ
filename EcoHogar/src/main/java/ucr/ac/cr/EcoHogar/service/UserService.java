@@ -56,17 +56,6 @@ public class UserService
     // Guardar usuario
     public User save(User user)
     {
-<<<<<<< HEAD
-        Optional<User> opt=this.userRepository.findById(user.getId());
-        if(opt.isPresent())
-=======
-        //verificar que el id no venga vacio
-        if(user.getId() == null)
->>>>>>> 31721f0efbb526b8b35f02a5223166c9ac829bc7
-        {
-            return null;
-        }
-
         Optional<User> opt = this.userRepository.findById(user.getId());
 
         // verifica si existe el usuario con ese id
@@ -76,7 +65,6 @@ public class UserService
         }
 
         return this.userRepository.save(user);
-
     }//fin metodo
 
     // Editar usuario
@@ -158,12 +146,12 @@ public class UserService
     }
 
 
-<<<<<<< HEAD
+
 
 //  Otro método que sea el índice ecológico
-=======
+
     // Eco índice
->>>>>>> 31721f0efbb526b8b35f02a5223166c9ac829bc7
+
     public Double ecoIndex(Integer id)
     {
         //Generalizamos los gastos por persona
