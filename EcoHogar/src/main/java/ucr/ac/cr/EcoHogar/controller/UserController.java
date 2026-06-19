@@ -8,6 +8,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ucr.ac.cr.EcoHogar.model.DTO.UserLoginDto;
+import ucr.ac.cr.EcoHogar.model.DTO.UserRequest;
+import ucr.ac.cr.EcoHogar.model.DTO.UserResponse;
 import ucr.ac.cr.EcoHogar.model.User;
 import ucr.ac.cr.EcoHogar.service.UserService;
 
@@ -42,7 +44,7 @@ public class UserController
 
     //Obtener todos-funcionaa
     @GetMapping
-    public ResponseEntity<List<User>> findAll()
+    public ResponseEntity<List<UserResponse>> findAll()
     {
         return ResponseEntity.ok(this.userService.findAll());
     }//fin metodo
@@ -51,7 +53,7 @@ public class UserController
     @GetMapping("/id/{id}")
     public ResponseEntity<?> findById(@PathVariable Integer id)
     {
-        User user = this.userService.findByID(id);
+        UserResponse user = this.userService.findByID(id);
 
         if(user == null)
         {
@@ -76,7 +78,7 @@ public class UserController
 
     //Editar-funciona
     @PutMapping("/id/{id}")
-    public ResponseEntity<?>edit(@Validated @PathVariable Integer id, @RequestBody User user, BindingResult result)
+    public ResponseEntity<?>edit(@Validated @PathVariable Integer id, @RequestBody UserRequest user, BindingResult result)
     {
         if (result.hasErrors())
         {
@@ -88,7 +90,7 @@ public class UserController
             return ResponseEntity.badRequest().body(errors);
         }//fin if
 
-        User userEd = this.userService.findByID(user.getId());
+        UserResponse userEd = this.userService.findByID(user.getId());
 
         if(userEd == null)
         {
@@ -100,7 +102,7 @@ public class UserController
 
     //Guardar usuario
     @PostMapping("/save")
-    public  ResponseEntity<?> saveUser(@Validated @RequestBody User user, BindingResult result)
+    public  ResponseEntity<?> saveUser(@Validated @RequestBody UserRequest user, BindingResult result)
     {
         if (result.hasErrors())
         {
@@ -112,7 +114,8 @@ public class UserController
             return ResponseEntity.badRequest().body(errors);
         }//fin if
 
-        User dto=this.userService.save(user);
+        UserResponse dto=this.userService.save(user);
+
         if (dto==null)
         {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("El usuario con el ID: "+user.getId()+ "ya esta registrado.");
@@ -124,8 +127,9 @@ public class UserController
 
     //El consume de agua al mes
     @GetMapping("/agua/{id}")
-    public ResponseEntity<?> waterConsumptionPerMonth(@PathVariable Integer id){
-        User user = this.userService.findByID(id);
+    public ResponseEntity<?> waterConsumptionPerMonth(@PathVariable Integer id)
+    {
+        UserResponse user = this.userService.findByID(id);
 
         if(user == null)
         {
@@ -139,7 +143,7 @@ public class UserController
     @GetMapping("/luz/{id}")
     public ResponseEntity<?> lightConsumptionPerMonth(@PathVariable Integer id)
     {
-        User user = this.userService.findByID(id);
+        UserResponse user = this.userService.findByID(id);
 
         if(user == null)
         {
@@ -153,7 +157,7 @@ public class UserController
     @GetMapping("/agua-año/{id}")
     public ResponseEntity<?> waterConsumptionPerYear(@PathVariable Integer id)
     {
-        User user = this.userService.findByID(id);
+        UserResponse user = this.userService.findByID(id);
 
         if(user == null)
         {
@@ -167,7 +171,7 @@ public class UserController
     @GetMapping("/luz-año/{id}")
     public ResponseEntity<?> lightConsumptionPerYear(@PathVariable Integer id)
     {
-        User user = this.userService.findByID(id);
+        UserResponse user = this.userService.findByID(id);
 
         if(user == null)
         {
@@ -181,7 +185,7 @@ public class UserController
     @GetMapping("/eco-indice/{id}")
     public ResponseEntity<?> ecoIndex(@PathVariable Integer id)
     {
-        User user = this.userService.findByID(id);
+        UserResponse user = this.userService.findByID(id);
 
         if(user == null)
         {
