@@ -7,6 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ucr.ac.cr.EcoHogar.model.DTO.DeviceRequest;
+import ucr.ac.cr.EcoHogar.model.DTO.DeviceResponse;
 import ucr.ac.cr.EcoHogar.model.Device;
 import ucr.ac.cr.EcoHogar.service.DeviceService;
 
@@ -33,7 +35,7 @@ public class DeviceController
     @GetMapping("/findById/{id}")
     public ResponseEntity<?> findById(@PathVariable Integer id)
     {
-        Device device = this.service.findById(id);
+        DeviceResponse device = this.service.findById(id);
         if (device == null)
         {
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).body("El dispositivo electronico con el id " +id+ " no se encuentra registrado");
@@ -45,7 +47,7 @@ public class DeviceController
     @GetMapping("/findByName/{name}")
     public ResponseEntity<?> findByName(@PathVariable String name)
     {
-        Device device = this.service.findByName(name);
+        DeviceResponse device = this.service.findByName(name);
         if (device == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El dispositivo con el nombre "+name+"no se encuentra registrado");
         }
@@ -54,7 +56,7 @@ public class DeviceController
 
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<?> editDeice(@RequestBody Device deviceE, @PathVariable Integer id, BindingResult result){
+    public ResponseEntity<?> editDeice(@RequestBody DeviceRequest deviceE, @PathVariable Integer id, BindingResult result){
         if (result.hasErrors())
         {
             Map<String, String> errors = new HashMap<>();
@@ -63,7 +65,7 @@ public class DeviceController
                 errors.put(error.getField(), error.getDefaultMessage());
             }
         }
-        Device device = this.service.findById(id);
+        DeviceResponse device = this.service.findById(id);
         if (device == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El dispositivo con el id " +id+ " no se encuentra registrado");
         }
@@ -81,7 +83,7 @@ public class DeviceController
             }
             return ResponseEntity.badRequest().body(errors);
         }
-        Device devicePrue = this.service.findByName(device.getName());
+        DeviceResponse devicePrue = this.service.findByName(device.getName());
         if (devicePrue != null)
         {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("El dispositivo "+device.getName()+" ya se encuentra registrado!");
@@ -93,7 +95,7 @@ public class DeviceController
     @DeleteMapping("/id/{id}")
     public ResponseEntity<?> deleteDevice(@PathVariable Integer id)
     {
-        Device device = this.service.findById(id);
+        DeviceResponse device = this.service.findById(id);
         if (device == null)
         {
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).body("El dispositivo electronico con el id " +id+ " no se encuentra registrado");
