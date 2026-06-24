@@ -7,30 +7,30 @@
   <link rel="stylesheet" href="css/indexStyle.css">
 </head>
 <body>
-  <header>
-    <img src="Logo.png" alt="Eco Hogar">
-    <h1>Panel de Consumo Familiar</h1>
+  <header><!--Este es el header-->
+    <img src="Logo.png" alt="Eco Hogar"><!--Imagen del logo-->
+    <h1>Panel de Consumo Familiar</h1><!--Título de la página-->
   </header>
 
-  <main class="container">
-    <h2>Listado de Familias</h2>
+  <main class="container"><!--Aqui va todo lo que tiene que ver con los metodos-->
+    <h2>Listado de Familias</h2><!--Subtitulo-->
 
     <!-- Filtros -->
     <div class="filters">
-      <label for="memberFilter">Filtrar por cantidad de miembros:</label>
-      <select id="memberFilter">
+      <label for="memberFilter">Filtrar por cantidad de miembros:</label><!--Texto para el combobox-->
+      <select id="memberFilter"><!--Combo box-->
         <option value="all">Todas</option>
         <option value="1-3">1 a 3 miembros</option>
         <option value="4-6">4 a 6 miembros</option>
         <option value="7+">Más de 7 miembros</option>
       </select>
-      <button id="applyFilter">Aplicar filtro</button>
+      <button id="applyFilter">Aplicar filtro</button><!--Botón-->
     </div>
 
     <!-- Tabla -->
-    <table id="familyTable">
-      <thead>
-        <tr>
+    <table id="familyTable"><!--Tabla amarilla-->
+      <thead><!--Tabla-->
+        <tr><!--Sus columnas-->
           <th>Nombre</th>
           <th>Miembros</th>
           <th>Consumo Agua (mensual)</th>
