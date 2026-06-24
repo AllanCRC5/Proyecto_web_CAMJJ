@@ -30,7 +30,8 @@ public class UserService {
 
 
     // Buscar por ID
-    public UserResponse findByID(Integer id) {
+    public UserResponse findByID(Integer id)
+    {
       User user = this.findUserById(id);
 
         if (user == null){
@@ -41,10 +42,12 @@ public class UserService {
 
 
     // metodo que se usará solo en el service, para evitar conflictos con el userRequest y Response
-    private User findUserById(Integer id){
+    private User findUserById(Integer id)
+    {
         Optional<User> opt = this.userRepository.findById(id);
 
-        if(opt.isPresent()){
+        if(opt.isPresent())
+        {
             return opt.get();
         }
         return null;
@@ -59,7 +62,8 @@ public class UserService {
 
 
     // Login
-    public User login(String email, String password){
+    public User login(String email, String password)
+    {
         return this.userRepository.login(email, password);
     }
 
@@ -86,7 +90,8 @@ public class UserService {
 
 
     // Editar usuario
-    public UserResponse editUser(Integer id, UserRequest user){
+    public UserResponse editUser(Integer id, UserRequest user)
+    {
         User userEdit = this.findUserById(id);
 
         if (userEdit == null)
@@ -110,7 +115,8 @@ public class UserService {
 
 
     // Consumo de agua mensual
-    public Double waterConsumptionPerMonth(Integer id){
+    public Double waterConsumptionPerMonth(Integer id)
+    {
         User user = this.findUserById(id);
 
         if (user == null || user.getEcoService() == null)
@@ -169,7 +175,8 @@ public class UserService {
 
     // Eco índice
 
-    public Double ecoIndex(Integer id){
+    public Double ecoIndex(Integer id)
+    {
         //Generalizamos los gastos por persona
         Double waterMediaPerPerson = this.waterConsumptionPerMonth(id) / this.userRepository.getReferenceById(id).getMemberQuantity();
         Double ligthMediaPerPerson = this.ligthConsumptionPerMonth(id) / this.userRepository.getReferenceById(id).getMemberQuantity();
@@ -241,7 +248,8 @@ public class UserService {
 
 
     //Pasa de un UserRequest a un user normal
-    private User convertToUser(UserRequest request){
+    private User convertToUser(UserRequest request)
+    {
         User user = new User();
 
         user.setId(request.getId());
