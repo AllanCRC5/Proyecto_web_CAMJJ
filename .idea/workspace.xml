@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97b0f69b-7a0e-4754-a12c-e1995b052088" name="Changes" comment="" />
+    <list default="true" id="97b0f69b-7a0e-4754-a12c-e1995b052088" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_04_06_2026_08_34_p_m__[Changes]/shelved.patch" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,7 +32,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "develop",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Allan/Documents/UCR/Tercer semestre/Programación/Proyecto_SpringBoot_Programacion"
+    "last_opened_file_path": "C:/Users/yossi/OneDrive/Documentos/EcoHogarProycto"
   }
 }]]></component>
   <component name="RunManager">

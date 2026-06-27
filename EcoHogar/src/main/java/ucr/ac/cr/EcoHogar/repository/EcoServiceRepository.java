@@ -8,7 +8,6 @@ import java.util.Optional;
 
 public interface EcoServiceRepository extends JpaRepository<EcoService, Integer>
 {
-    List<EcoService> findAll();
-    List<EcoService> findByName(String name);//Aqui el problema, no está bien escrita la consulta
-    Optional<EcoService> findById(Integer id);
-}//fin clase
+
+    Optional<EcoService> findByName(String name);
+}
