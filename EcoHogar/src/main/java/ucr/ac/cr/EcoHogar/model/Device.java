@@ -36,7 +36,7 @@ public class Device
     }
 
     //crear relaciones
-    @OneToMany(mappedBy = "Device")//crea la llave foránea
+    @OneToMany(mappedBy = "device")//crea la llave foránea
     @JsonIgnore
     private List<User> listUser;
 
