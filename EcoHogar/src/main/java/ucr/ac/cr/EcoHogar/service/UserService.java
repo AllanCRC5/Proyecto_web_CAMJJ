@@ -226,7 +226,8 @@ public class UserService {
 
 
     //Este metodo convierte de un User normal a un userResponse
-    public UserResponse convertToResponse(User user){
+    public UserResponse convertToResponse(User user)
+    {
         UserResponse userResponse = new UserResponse(user.getId(), user.getName(), user.getMemberQuantity(), user.getPassword(), user.getEmail());
         return userResponse;
     }//fin metodo
