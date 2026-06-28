@@ -2,9 +2,12 @@ package ucr.ac.cr.EcoHogar.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ucr.ac.cr.EcoHogar.model.DTO.DeviceRequest;
+import ucr.ac.cr.EcoHogar.model.DTO.DeviceResponse;
 import ucr.ac.cr.EcoHogar.model.Device;
 import ucr.ac.cr.EcoHogar.repository.DeviceRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +18,7 @@ public class DeviceService
     private DeviceRepository repository;
 
 
+
     // Obtener objeto para UserService
     public Optional<Device> getDevice(Integer id)
     {
@@ -23,13 +27,20 @@ public class DeviceService
 
 
     // Obtener por id
-    public Device findById(int id)
+    public DeviceResponse findById(Integer id)
     {
-        Optional<Device> device = repository.findById(id);
+        Optional<Device> optional = repository.findById(id);
 
-        if (device.isPresent())
+        if(optional.isPresent())
         {
-            return device.get();
+            Device device = optional.get();
+
+            return new DeviceResponse(
+                    device.getId(),
+                    device.getName(),
+                    device.getUsedLight(),
+                    device.getQuantity()
+            );
         }
 
         return null;
@@ -37,47 +48,67 @@ public class DeviceService
 
 
     // Guardar electrodoméstico
-    public Device save(Device device)
+    public DeviceResponse save(Device request)
     {
-        return this.repository.save(device);
+        Optional<Device> opt = this.repository.findById(request.getId());
+
+        if(opt.isPresent())
+        {
+            return null;
+        }
+
+        Device device = this.convertToDevice(request);
+
+        Device savedDevice = this.repository.save(device);
+
+        return this.convertToResponse(savedDevice);
     }
 
 
     // Obtener por nombre
-    public Device findByName(String name)
+    public DeviceResponse findByName(String name)
     {
-        Optional<Device> optional = this.repository.findByName(name);
+        Optional<Device> opt = this.repository.findByName(name);
 
-        if(optional.isPresent())
+        if(opt.isPresent())
         {
-            return optional.get();
+            return this.convertToResponse(opt.get());
         }
 
         return null;
     }
 
 
+
     // Obtener todos
-    public List<Device> findAll()
+    public List<DeviceResponse> findAll()
     {
-        return this.repository.findAll();
+        return this.convertList(this.repository.findAll());
     }
 
 
+
     // Editar device
-    public Device editDevice(Integer id, Device device)
+    public DeviceResponse editDevice(Integer id, DeviceRequest request)
     {
-        Optional<Device> deviceOpt = this.repository.findById(id);
+        Optional<Device> optional = repository.findById(id);
 
-        if(deviceOpt.isPresent())
+        if(optional.isPresent())
         {
-            Device deviceEdit = deviceOpt.get();
+            Device device = optional.get();
 
-            deviceEdit.setName(device.getName());
-            deviceEdit.setUsedLight(device.getUsedLight());
-            deviceEdit.setQuantity(device.getQuantity());
+            device.setName(request.getName());
+            device.setUsedLight(request.getUsedLigth());
+            device.setQuantity(request.getQuantity());
 
-            return this.repository.save(deviceEdit);
+            Device updated = repository.save(device);
+
+            return new DeviceResponse(
+                    updated.getId(),
+                    updated.getName(),
+                    updated.getUsedLight(),
+                    updated.getQuantity()
+            );
         }
 
         return null;
@@ -90,4 +121,49 @@ public class DeviceService
         this.repository.deleteById(id);
     }
 
+    public DeviceRequest convertToRequest(Device device)
+    {
+        DeviceRequest request = new DeviceRequest();
+
+        request.setId(device.getId());
+        request.setName(device.getName());
+        request.setUsedLigth(device.getUsedLight());
+        request.setQuantity(device.getQuantity());
+
+        return request;
+    }
+
+    private DeviceResponse convertToResponse(Device device)
+    {
+        return new DeviceResponse(
+                device.getId(),
+                device.getName(),
+                device.getUsedLight(),
+                device.getQuantity()
+        );
+    }
+
+    public List<DeviceResponse> convertList(List<Device> listDevice)
+    {
+        List<DeviceResponse> listResponse = new ArrayList<>();
+
+        for(Device device : listDevice)
+        {
+            listResponse.add(this.convertToResponse(device));
+        }
+
+        return listResponse;
+    }
+
+    private Device convertToDevice(Device request)
+    {
+        Device device = new Device();
+
+        device.setId(request.getId());
+        device.setName(request.getName());
+        device.setUsedLight(request.getUsedLight());
+        device.setQuantity(request.getQuantity());
+
+        return device;
+    }
 }

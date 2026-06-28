@@ -12,10 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService
-{
+public class UserService {
+
     @Autowired
     private UserRepository userRepository;
+
 
     @Autowired
     private DeviceService deviceService;
@@ -33,8 +34,7 @@ public class UserService
     {
       User user = this.findUserById(id);
 
-        if (user == null)
-        {
+        if (user == null){
             return null;
         }//fin if
         return this.convertToResponse(user);
@@ -56,8 +56,7 @@ public class UserService
 
 
     // Buscar por nombre
-    public List<UserResponse> findByName(String name)
-    {
+    public List<UserResponse> findByName(String name){
         return this.convertList(this.userRepository.findByName(name));
     }
 
@@ -70,13 +69,11 @@ public class UserService
 
 
         // Guardar usuario
-        public UserResponse save(UserRequest userRequest)
-        {
+        public UserResponse save(UserRequest userRequest){
             Optional<User> opt = this.userRepository.findById(userRequest.getId());
 
             // verifica si existe el usuario con ese id
-            if(opt.isPresent())
-            {
+            if(opt.isPresent()){
                 return null;
             }//fin if
             //guarda la info de userRequest en un user normal
@@ -132,8 +129,7 @@ public class UserService
 
 
     // Consumo de luz mensual
-    public Double ligthConsumptionPerMonth(Integer id)
-    {
+    public Double ligthConsumptionPerMonth(Integer id){
         User user = this.findUserById(id);
 
         if (user == null || user.getEcoService() == null)
@@ -148,8 +144,7 @@ public class UserService
 
 
     // Consumo de agua anual
-    public Double waterConsumptionPerYear(Integer id)
-    {
+    public Double waterConsumptionPerYear(Integer id){
         Double month = this.waterConsumptionPerMonth(id);
 
         if (month == null)
@@ -162,8 +157,7 @@ public class UserService
 
 
     // Consumo de luz anual
-    public Double lightConsumptionPerYear(Integer id)
-    {
+    public Double lightConsumptionPerYear(Integer id){
         Double month = this.ligthConsumptionPerMonth(id);
 
         if (month == null)
@@ -216,8 +210,7 @@ public class UserService
 
 
     // Este metodo convierte un user normal a un userRequest
-    public UserRequest convertToRequest(User user)
-    {
+    public UserRequest convertToRequest(User user){
         UserRequest userRequest = new UserRequest();
 
         userRequest.setId(user.getId());

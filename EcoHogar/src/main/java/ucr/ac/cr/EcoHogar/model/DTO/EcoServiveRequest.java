@@ -4,16 +4,12 @@ public class EcoServiveRequest
 {
     private Integer id;
     private String name;
-    private Double waterCostPerLit;
-    private Double hoursOfLigthPd;
-    private Double ligthCostPerHour;
+    private Double waterCostPerlit;
+    private Double hoursOfLightPd;
+    private Double lightCostPerHour;
     private Double litersOfWaterConsumedPd;
 
-
-    public EcoServiveRequest()
-    {
-
-    }//Fin constructor
+    public EcoServiveRequest() {}
 
     public Integer getId() {
         return id;
@@ -31,28 +27,28 @@ public class EcoServiveRequest
         this.name = name;
     }
 
-    public Double getWaterCostPerLit() {
-        return waterCostPerLit;
+    public Double getWaterCostPerlit() {
+        return waterCostPerlit;
     }
 
-    public void setWaterCostPerLit(Double waterCostPerLit) {
-        this.waterCostPerLit = waterCostPerLit;
+    public void setWaterCostPerlit(Double waterCostPerlit) {
+        this.waterCostPerlit = waterCostPerlit;
     }
 
-    public Double getHoursOfLigthPd() {
-        return hoursOfLigthPd;
+    public Double getHoursOfLightPd() {
+        return hoursOfLightPd;
     }
 
-    public void setHoursOfLigthPd(Double hoursOfLigthPd) {
-        this.hoursOfLigthPd = hoursOfLigthPd;
+    public void setHoursOfLightPd(Double hoursOfLightPd) {
+        this.hoursOfLightPd = hoursOfLightPd;
     }
 
-    public Double getLigthCostPerHour() {
-        return ligthCostPerHour;
+    public Double getLightCostPerHour() {
+        return lightCostPerHour;
     }
 
-    public void setLigthCostPerHour(Double ligthCostPerHour) {
-        this.ligthCostPerHour = ligthCostPerHour;
+    public void setLightCostPerHour(Double lightCostPerHour) {
+        this.lightCostPerHour = lightCostPerHour;
     }
 
     public Double getLitersOfWaterConsumedPd() {
