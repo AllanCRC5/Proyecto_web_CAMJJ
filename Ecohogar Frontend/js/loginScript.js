@@ -5,7 +5,7 @@ document.getElementById("loginForm").addEventListener("submit", async (event) =>
     const password = document.getElementById("password").value; //Constante que recibe la contraseña
 
     try { 
-        const response = await fetch("http://localhost:8080/api/family/login", { //Constante response
+        const response = await fetch("https://proyecto-web-camjj-2.onrender.com/api/family/login", { //Constante response
             method: "POST", //El endpoint es un POST
             headers: { "Content-Type": "application/json" }, //Header
             body: JSON.stringify({ email, password }) //Convierte los datos a string
