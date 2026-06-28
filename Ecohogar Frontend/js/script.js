@@ -1,11 +1,11 @@
-  async function loadFamilies() {
-      const response = await fetch("http://localhost:8080/api/family");
-      const families = await response.json();
+  async function loadFamilies() {  //Cargar familias
+      const response = await fetch("http://localhost:8080/api/family"); //crea una constante llamada response que recibe el url
+      const families = await response.json(); //crea constante llamada families que agarra el json de response
       renderTable(families);
     }
 
-    function renderTable(families) {
-      const tbody = document.querySelector("#familyTable tbody");
+    function renderTable(families) { //Renderiza la tabla
+      const tbody = document.querySelector("#familyTable tbody"); 
       tbody.innerHTML = "";
       families.forEach(f => {
         const row = document.createElement("tr");
@@ -20,17 +20,18 @@
       });
     }
 
-    document.getElementById("applyFilter").addEventListener("click", async () => {
-      const filter = document.getElementById("memberFilter").value;
-      const response = await fetch("http://localhost:8080/api/family");
-      const families = await response.json();
+    document.getElementById("applyFilter").addEventListener("click", async () => { //Recibe el click de apply filter
+      const filter = document.getElementById("memberFilter").value; //constante filter que recibe el valor del filtro
+      const response = await fetch("http://localhost:8080/api/family"); //constante response que hace fetch del url de localhost
+      const families = await response.json(); //constante families que agarra el json de response
       let filtered = families;
 
-      if (filter === "1-3") filtered = families.filter(f => f.memberQuantity <= 3);
+      //Condiciones if para los filtros de tamaño de familia
+      if (filter === "1-3") filtered = families.filter(f => f.memberQuantity <= 3); 
       else if (filter === "4-6") filtered = families.filter(f => f.memberQuantity >= 4 && f.memberQuantity <= 6);
       else if (filter === "7+") filtered = families.filter(f => f.memberQuantity >= 7);
 
-      renderTable(filtered);
+      renderTable(filtered); //Renderiza la tabla
     });
 
-    loadFamilies();
+    loadFamilies(); //Carga las familias ya filtradas
