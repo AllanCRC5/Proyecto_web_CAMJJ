@@ -2,8 +2,11 @@ package ucr.ac.cr.EcoHogar.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ucr.ac.cr.EcoHogar.model.DTO.RegisterRequest;
 import ucr.ac.cr.EcoHogar.model.DTO.UserRequest;
 import ucr.ac.cr.EcoHogar.model.DTO.UserResponse;
+import ucr.ac.cr.EcoHogar.model.Device;
+import ucr.ac.cr.EcoHogar.model.EcoService;
 import ucr.ac.cr.EcoHogar.model.User;
 import ucr.ac.cr.EcoHogar.repository.UserRepository;
 
@@ -20,6 +23,9 @@ public class UserService {
 
     @Autowired
     private DeviceService deviceService;
+
+    @Autowired
+    private EcoServiceService ecoServiceService;
 
 
     // Buscar todos
@@ -44,6 +50,10 @@ public class UserService {
     // metodo que se usará solo en el service, para evitar conflictos con el userRequest y Response
     private User findUserById(Integer id)
     {
+        if (id == null) {
+            return null;
+        }
+
         Optional<User> opt = this.userRepository.findById(id);
 
         if(opt.isPresent())
@@ -69,15 +79,17 @@ public class UserService {
 
 
         // Guardar usuario
-        public UserResponse save(UserRequest userRequest){
-            Optional<User> opt = this.userRepository.findById(userRequest.getId());
+        public UserResponse save(RegisterRequest request){
+            if (request.getId() != null) {
+                Optional<User> opt = this.userRepository.findById(request.getId());
+                // verifica si existe el usuario con ese id
+                if (opt.isPresent()) {
+                    return null;
+                }//fin if
+            }
 
-            // verifica si existe el usuario con ese id
-            if(opt.isPresent()){
-                return null;
-            }//fin if
             //guarda la info de userRequest en un user normal
-            User user = this.convertToUser(userRequest);
+            User user = this.convertToUser(request);
 
             //guarda el usuario normal
             User savedUser = this.userRepository.save(user);
@@ -177,50 +189,42 @@ public class UserService {
 
     public Double ecoIndex(Integer id)
     {
-        //Generalizamos los gastos por persona
-        Double waterMediaPerPerson = this.waterConsumptionPerMonth(id) / this.userRepository.getReferenceById(id).getMemberQuantity();
-        Double ligthMediaPerPerson = this.ligthConsumptionPerMonth(id) / this.userRepository.getReferenceById(id).getMemberQuantity();
-        Double devicesMediaPerPerson = this.deviceService.getDevice(id).get().getQuantity() / this.userRepository.getReferenceById(id).getMemberQuantity();
+        User user = this.findUserById(id);
 
+        if (user == null || user.getEcoService() == null || user.getDevice() == null)
+        {
+            return null;
+        }
 
-        /*Puntuaciones de consumo
-        Gasto ideal de agua por persona =  5000 colones
-        Gasto ideal de luz por persona  8000
-        Electrodomesticos promedios que tiene una persona  5
-         */
+        if (user.getMemberQuantity() == null || user.getMemberQuantity() == 0)
+        {
+            return null;
+        }
+
+        if (user.getDevice().getQuantity() == null)
+        {
+            return null;
+        }
+
+        Double members = user.getMemberQuantity().doubleValue();
+
+        Double waterMediaPerPerson =
+                this.waterConsumptionPerMonth(id) / members;
+
+        Double lightMediaPerPerson =
+                this.ligthConsumptionPerMonth(id) / members;
+
+        Double devicesMediaPerPerson =
+                user.getDevice().getQuantity() / members;
 
         Double waterPoint = waterMediaPerPerson / 5000;
-        Double ligthPoint = ligthMediaPerPerson / 8000;
+        Double lightPoint = lightMediaPerPerson / 8000;
         Double devicePoint = devicesMediaPerPerson / 5;
 
-
-        //Se calcula el índice ecológico
-        return 100 * (0.4 * (waterPoint) + 0.4 * (ligthPoint) + 0.2 * (devicePoint));
-
-        /*Indicador de valor
-        0-60 Poco ecológico
-        61-80 Mejorable
-        81-100 Bueno
-        101-120 Muy bueno
-        >120 Excelente
-         */
-    }//fin clase
-
-
-
-
-    // Este metodo convierte un user normal a un userRequest
-    public UserRequest convertToRequest(User user){
-        UserRequest userRequest = new UserRequest();
-
-        userRequest.setId(user.getId());
-        userRequest.setName(user.getName());
-        userRequest.setEmail(user.getEmail());
-        userRequest.setPassword(user.getPassword());
-        userRequest.setMemberQuantity(user.getMemberQuantity());
-
-        return userRequest;
-    }//fin metodo
+        return 100 * (0.4 * waterPoint
+                + 0.4 * lightPoint
+                + 0.2 * devicePoint);
+    }
 
 
 
@@ -249,18 +253,25 @@ public class UserService {
 
 
     //Pasa de un UserRequest a un user normal
-    private User convertToUser(UserRequest request)
+    private User convertToUser(RegisterRequest request)
     {
         User user = new User();
-
-        user.setId(request.getId());
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
         user.setMemberQuantity(request.getMemberQuantity());
 
+        Device device = deviceService.getDevice(request.getDeviceId())
+                .orElseThrow(() -> new RuntimeException("Device no existe"));
+
+        EcoService eco = ecoServiceService.getEcoService(request.getEcoServiceId())
+                .orElseThrow(() -> new RuntimeException("EcoService no existe"));
+
+        user.setDevice(device);
+        user.setEcoService(eco);
+
         return user;
-    }//fin metodo
+    }
 
 
 

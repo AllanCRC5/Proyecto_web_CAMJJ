@@ -1,28 +1,58 @@
-document.getElementById("loginForm").addEventListener("submit", async (event) => {
-    event.preventDefault();
+const API = "http://localhost:8080/api/family";
 
-    const email = document.getElementById("email").value; //Constante que recibe el email
-    const password = document.getElementById("password").value; //Constante que recibe la contraseña
+const form = document.getElementById("loginForm");
+const message = document.getElementById("message");
 
-    try { 
-        const response = await fetch("https://proyecto-web-camjj-2.onrender.com/api/family/login", { //Constante response
-            method: "POST", //El endpoint es un POST
-            headers: { "Content-Type": "application/json" }, //Header
-            body: JSON.stringify({ email, password }) //Convierte los datos a string
+form.addEventListener("submit", async function (e) {
+
+    e.preventDefault();
+
+    const usuario = {
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+    };
+
+    try {
+
+        const respuesta = await fetch(API + "/login", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(usuario)
+
         });
 
-        const messageElement = document.getElementById("message"); //Obtiene mensaje
+        const datos = await respuesta.text();
 
-        if (response.ok) { //Si el response es positivo:
-            const data = await response.text();
-            messageElement.style.color = "green"; //Color verde de mensaje
-            messageElement.textContent = data; //Texto contiene los datos
-        } else { //Si hay errores
-            const error = await response.text(); //Constante de error que obtiene el texto de response
-            messageElement.style.color = "red"; //COlor rojo de mensaje
-            messageElement.textContent = error; //Mete el texto de cons error al contenido del mensaje
+        if (respuesta.ok) {
+
+            message.style.color = "green";
+            message.innerHTML = datos;
+
+            setTimeout(() => {
+
+                window.location.href = "index.html";
+
+            }, 1500);
+
+        } else {
+
+            message.style.color = "red";
+            message.innerHTML = datos;
+
         }
-    } catch (err) { //Atrapa errores
-        document.getElementById("message").textContent = "Error de conexión con el servidor";
+
+    } catch (error) {
+
+        console.error(error);
+
+        message.style.color = "red";
+        message.innerHTML = "No fue posible conectar con el servidor.";
+
     }
+
 });

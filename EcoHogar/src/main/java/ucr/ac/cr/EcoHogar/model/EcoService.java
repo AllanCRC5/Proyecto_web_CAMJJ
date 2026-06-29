@@ -9,6 +9,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 import java.util.List;
 
 @Entity// para decir que la clase sera una entidad
+@Table(name = "EcoService_tb")
 public class EcoService
 {
 

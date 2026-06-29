@@ -1,22 +1,20 @@
 package ucr.ac.cr.EcoHogar.model.DTO;
 
-public class UserRequest
-{
-    private Integer id;
-    private String  name;
-    private Integer memberQuantity;
-    private String email;
-    private String password;
-    private Integer deviceId;
-    private Integer ecoServiceId;
+public class RegisterRequest {
+
+    Integer id;
+    String name;
+    Integer memberQuantity;
+    String email;
+    String password;
+    Integer deviceId;
+    Integer ecoServiceId;
+
+    public RegisterRequest() {
+    }
 
 
-    public UserRequest()
-    {
-
-    }// fin vacio
-
-    public UserRequest(Integer id, String name, Integer memberQuantity, String email, String password, Integer deviceId, Integer ecoServiceId) {
+    public RegisterRequest(Integer id, String name, Integer memberQuantity, String email, String password, Integer deviceId, Integer ecoServiceId) {
         this.id = id;
         this.name = name;
         this.memberQuantity = memberQuantity;
@@ -62,7 +60,7 @@ public class UserRequest
         return password;
     }
 
-    public void setPassword(String password)  {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -81,4 +79,4 @@ public class UserRequest
     public void setEcoServiceId(Integer ecoServiceId) {
         this.ecoServiceId = ecoServiceId;
     }
-}// fin class
+}

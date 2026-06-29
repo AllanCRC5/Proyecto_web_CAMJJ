@@ -48,20 +48,15 @@ public class DeviceService
 
 
     // Guardar electrodoméstico
-    public DeviceResponse save(Device request)
+    public DeviceResponse save(DeviceRequest request)
     {
-        Optional<Device> opt = this.repository.findById(request.getId());
-
-        if(opt.isPresent())
-        {
-            return null;
-        }
-
         Device device = this.convertToDevice(request);
 
-        Device savedDevice = this.repository.save(device);
+        device.setId(null);
 
-        return this.convertToResponse(savedDevice);
+        Device saved = repository.save(device);
+
+        return this.convertToResponse(saved);
     }
 
 
@@ -91,27 +86,16 @@ public class DeviceService
     // Editar device
     public DeviceResponse editDevice(Integer id, DeviceRequest request)
     {
-        Optional<Device> optional = repository.findById(id);
+        Device device = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Device not found"));
 
-        if(optional.isPresent())
-        {
-            Device device = optional.get();
+        device.setName(request.getName());
+        device.setUsedLight(request.getUsedLigth());
+        device.setQuantity(request.getQuantity());
 
-            device.setName(request.getName());
-            device.setUsedLight(request.getUsedLigth());
-            device.setQuantity(request.getQuantity());
+        Device updated = repository.save(device);
 
-            Device updated = repository.save(device);
-
-            return new DeviceResponse(
-                    updated.getId(),
-                    updated.getName(),
-                    updated.getUsedLight(),
-                    updated.getQuantity()
-            );
-        }
-
-        return null;
+        return convertToResponse(updated);
     }
 
 
@@ -155,15 +139,20 @@ public class DeviceService
         return listResponse;
     }
 
-    private Device convertToDevice(Device request)
+    private Device convertToDevice(DeviceRequest request)
     {
         Device device = new Device();
-
-        device.setId(request.getId());
+        device.setUsedLight(request.getUsedLigth());
         device.setName(request.getName());
-        device.setUsedLight(request.getUsedLight());
         device.setQuantity(request.getQuantity());
 
         return device;
     }
+
+    public Device saveEntity(Device device)
+    {
+        return repository.save(device);
+    }
+
+
 }

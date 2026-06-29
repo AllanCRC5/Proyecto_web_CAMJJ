@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ucr.ac.cr.EcoHogar.model.DTO.RegisterRequest;
 import ucr.ac.cr.EcoHogar.model.DTO.UserLoginDto;
 import ucr.ac.cr.EcoHogar.model.DTO.UserRequest;
 import ucr.ac.cr.EcoHogar.model.DTO.UserResponse;
@@ -19,6 +20,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/family")
+@CrossOrigin("*")
 public class UserController
 {
     @Autowired
@@ -90,7 +92,7 @@ public class UserController
             return ResponseEntity.badRequest().body(errors);
         }//fin if
 
-        UserResponse userEd = this.userService.findByID(user.getId());
+        UserResponse userEd = this.userService.findByID(id);
 
         if(userEd == null)
         {
@@ -102,7 +104,7 @@ public class UserController
 
     //Guardar usuario
     @PostMapping("/save")
-    public  ResponseEntity<?> saveUser(@Validated @RequestBody UserRequest user, BindingResult result)
+    public  ResponseEntity<?> saveUser(@Validated @RequestBody RegisterRequest request, BindingResult result)
     {
         if (result.hasErrors())
         {
@@ -114,11 +116,11 @@ public class UserController
             return ResponseEntity.badRequest().body(errors);
         }//fin if
 
-        UserResponse dto=this.userService.save(user);
+        UserResponse dto=this.userService.save(request);
 
         if (dto==null)
         {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("El usuario con el ID: "+user.getId()+ "ya esta registrado.");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("El usuario con el ID: "+request.getId()+ "ya esta registrado.");
         }//fin if
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }//fin metodo

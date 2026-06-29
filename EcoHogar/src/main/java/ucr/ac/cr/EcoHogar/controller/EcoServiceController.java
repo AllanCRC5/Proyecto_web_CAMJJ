@@ -19,6 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("api/EcoHogar/service")
+@CrossOrigin("*")
 public class EcoServiceController
 {
 
