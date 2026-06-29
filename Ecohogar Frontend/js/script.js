@@ -1,5 +1,5 @@
   async function loadFamilies() {  //Cargar familias
-      const response = await fetch("http://localhost:8080/api/family"); //crea una constante llamada response que recibe el url
+      const response = await fetch("https://proyecto-web-camjj-2.onrender.com/api/family"); //crea una constante llamada response que recibe el url
       const families = await response.json(); //crea constante llamada families que agarra el json de response
       renderTable(families);
     }
@@ -22,7 +22,7 @@
 
     document.getElementById("applyFilter").addEventListener("click", async () => { //Recibe el click de apply filter
       const filter = document.getElementById("memberFilter").value; //constante filter que recibe el valor del filtro
-      const response = await fetch("http://localhost:8080/api/family"); //constante response que hace fetch del url de localhost
+      const response = await fetch("https://proyecto-web-camjj-2.onrender.com/api/family"); //constante response que hace fetch del url de localhost
       const families = await response.json(); //constante families que agarra el json de response
       let filtered = families;
 
