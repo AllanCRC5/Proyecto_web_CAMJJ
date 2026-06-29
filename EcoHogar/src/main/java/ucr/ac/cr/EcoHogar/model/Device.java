@@ -7,6 +7,7 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 
 @Entity// para decir que la clase sera una entidad
+@Table(name= "device_tb")
 public class Device
 {
     @Id// establece que el dato de abajo sera la llave foranea
@@ -20,11 +21,11 @@ public class Device
     private String name;
 
     @PositiveOrZero(message = "El valor no puede ser null ni puede estar vacío")
-    @Column(name = "usedLight", nullable = false)
+    @Column(name = "used_Light")
     private Double usedLight;
 
     @PositiveOrZero(message = "El valor no puede ser null ni puede estar vacío")
-    @Column(name = "quantity", nullable = false)
+    @Column(name = "quantity")
     private Double quantity;
 
     public Device(Integer id, String name, Double usedLight, Double quantity)

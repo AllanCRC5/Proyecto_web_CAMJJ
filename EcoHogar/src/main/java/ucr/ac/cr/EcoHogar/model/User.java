@@ -6,11 +6,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
-@Table(name = "tb_usuario")
+@Table(name = "User_tb")
 public class User
 {
     @Id
     @PositiveOrZero(message = "El valor no puede ser null ni estar vacío")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

@@ -9,10 +9,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ucr.ac.cr.EcoHogar.model.DTO.DeviceRequest;
 import ucr.ac.cr.EcoHogar.model.DTO.DeviceResponse;
-import ucr.ac.cr.EcoHogar.model.Device;
 import ucr.ac.cr.EcoHogar.service.DeviceService;
 
-import javax.naming.spi.DirStateFactory;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,8 +54,8 @@ public class DeviceController
     }
 
 
-    @GetMapping("/id/{id}")
-    public ResponseEntity<?> editDeice(@RequestBody DeviceRequest deviceE, @PathVariable Integer id, BindingResult result){
+    @PutMapping("/id/{id}")
+    public ResponseEntity<?> editDevice(@RequestBody DeviceRequest deviceE, @PathVariable Integer id, BindingResult result){
         if (result.hasErrors())
         {
             Map<String, String> errors = new HashMap<>();
@@ -75,7 +73,7 @@ public class DeviceController
 
 
     @PostMapping("/add")
-    public ResponseEntity<?> save(@Validated @RequestBody Device device, BindingResult result){
+    public ResponseEntity<?> save(@Validated @RequestBody DeviceRequest deviceR, BindingResult result){
         if (result.hasErrors()){
             Map<String, String> errors = new HashMap<>();
             for (FieldError error : result.getFieldErrors())
@@ -84,12 +82,12 @@ public class DeviceController
             }
             return ResponseEntity.badRequest().body(errors);
         }
-        DeviceResponse devicePrue = this.service.findByName(device.getName());
+        DeviceResponse devicePrue = this.service.findByName(deviceR.getName());
         if (devicePrue != null)
         {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("El dispositivo "+device.getName()+" ya se encuentra registrado!");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("El dispositivo "+deviceR.getName()+" ya se encuentra registrado!");
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(device));
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(deviceR));
     }
 
 

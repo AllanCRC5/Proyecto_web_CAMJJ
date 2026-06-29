@@ -60,6 +60,11 @@ public class EcoServiceService
 
     // Guardar servicio
     public EcoServiceResponse save(EcoServiveRequest request) {
+        Optional<EcoService> optional = this.repository.findByName(request.getName());//mejor validar algo que no puede venir null en la variable
+        if(optional.isPresent())
+        {
+            return null;
+        }
         EcoService service = this.convertToEcoService(request);
         EcoService savedService = this.repository.save(service);
         return this.convertToResponse(savedService);
@@ -68,7 +73,7 @@ public class EcoServiceService
 
     // Editar servicio
     public EcoServiceResponse editService(Integer id, EcoServiveRequest request) {
-     Optional<EcoService> optional = repository.findById(id);
+     Optional<EcoService> optional = repository.findByName(request.getName());
 
      if(optional.isPresent()){
          EcoService service = optional.get();
@@ -144,5 +149,9 @@ public class EcoServiceService
         return service;
     }
 
+    public EcoService saveEntity(EcoService service)
+    {
+        return repository.save(service);
+    }
 
 }
