@@ -1,5 +1,5 @@
 const API_USER = "https://proyecto-web-camjj-2.onrender.com/api/family";
-const API_DEVICE = "https://proyecto-web-camjj-2.onrender.com//api/EcoHogar";
+const API_DEVICE = "https://proyecto-web-camjj-2.onrender.com/api/EcoHogar";
 const API_SERVICE = "https://proyecto-web-camjj-2.onrender.com/api/EcoHogar/service";
 
 const form = document.getElementById("signinForm");
