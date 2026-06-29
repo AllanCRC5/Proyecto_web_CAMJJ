@@ -1,44 +1,100 @@
-document.getElementById("signinForm").addEventListener("submit", async (event) => {
-    event.preventDefault();
+const API_USER = "http://localhost:8080/api/family";
+const API_DEVICE = "http://localhost:8080/api/EcoHogar";
+const API_SERVICE = "http://localhost:8080/api/EcoHogar/service";
 
-    const userData = { //Agarra los datos del usuario por ID
-        name: document.getElementById("name").value,
-        memberQuantity: document.getElementById("memberQuantity").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value,
-        ecoService: {
-            name: document.getElementById("ecoName").value,
-            waterCostPerlit: document.getElementById("waterCostPerlit").value,
-            hoursOfLightPd: document.getElementById("hoursOfLightPd").value,
-            lightCostPerHour: document.getElementById("lightCostPerHour").value,
-            litersOfWaterConsumedPd: document.getElementById("litersOfWaterConsumedPd").value
-        },
-        device: { //Datos del dispositivo
+const form = document.getElementById("signinForm");
+const message = document.getElementById("message");
+
+form.addEventListener("submit", async function (e) {
+
+    e.preventDefault();
+
+    try {
+
+        // ==========================
+        // Registrar Dispositivo
+        // ==========================
+
+        const device = {
             name: document.getElementById("deviceName").value,
-            usedLight: document.getElementById("usedLight").value,
-            quantity: document.getElementById("quantity").value
-        }
-    };
+            usedLigth: parseFloat(document.getElementById("usedLight").value),
+            quantity: parseFloat(document.getElementById("quantity").value)
+        };
 
-    try { 
-        const response = await fetch("https://proyecto-web-camjj-2.onrender.com/api/family/save", { //Cons response que hace fetch del save
-            method: "POST", //Endpoint POST
-            headers: { "Content-Type": "application/json" }, //Header
-            body: JSON.stringify(userData) //Convierte los datos del usuario a string
+        await fetch(API_DEVICE + "/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(device)
         });
 
-        const messageElement = document.getElementById("message"); //Constante mensaje
+        // ==========================
+        // Registrar Servicio
+        // ==========================
 
-        if (response.ok) { //Si el response es "ok":
-            const data = await response.json(); //Data toma el json del response
-            messageElement.style.color = "green"; //Color verde de texto
-            messageElement.textContent = "Cuenta creada con éxito. Bienvenido " + data.name; //Mensaje da bienvenida al usuario
-        } else { //Si el response no es "ok":
-            const error = await response.text(); //Constante error
-            messageElement.style.color = "red"; //Color rojo de texto
-            messageElement.textContent = error; //Contenido del mensaje = texto
+        const ecoService = {
+            name: document.getElementById("ecoName").value,
+            waterCostPerlit: parseFloat(document.getElementById("waterCostPerlit").value),
+            hoursOfLightPd: parseFloat(document.getElementById("hoursOfLightPd").value),
+            lightCostPerHour: parseFloat(document.getElementById("lightCostPerHour").value),
+            litersOfWaterConsumedPd: parseFloat(document.getElementById("litersOfWaterConsumedPd").value)
+        };
+
+        await fetch(API_SERVICE + "/save", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(ecoService)
+        });
+
+        // ==========================
+        // Registrar Usuario
+        // ==========================
+
+        const user = {
+            name: document.getElementById("name").value,
+            memberQuantity: parseInt(document.getElementById("memberQuantity").value),
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        };
+
+        const response = await fetch(API_USER + "/save", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user)
+        });
+
+        if (response.ok) {
+
+            message.style.color = "green";
+            message.textContent = "Usuario registrado correctamente.";
+
+            form.reset();
+
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 2000);
+
+        } else {
+
+            const error = await response.text();
+
+            message.style.color = "red";
+            message.textContent = error;
+
         }
-    } catch (err) { //Atrapa errores
-        document.getElementById("message").textContent = "Error de conexión con el servidor";
+
+    } catch (error) {
+
+        console.error(error);
+
+        message.style.color = "red";
+        message.textContent = "Error al conectar con el servidor.";
+
     }
+
 });

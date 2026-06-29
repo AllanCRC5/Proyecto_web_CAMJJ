@@ -1,37 +1,127 @@
-  async function loadFamilies() {  //Cargar familias
-      const response = await fetch("http://localhost:8080/api/family"); //crea una constante llamada response que recibe el url
-      const families = await response.json(); //crea constante llamada families que agarra el json de response
-      renderTable(families);
+const API = "http://localhost:8080/api/family";
+
+const tbody = document.querySelector("#familyTable tbody");
+const filtro = document.getElementById("memberFilter");
+const botonFiltro = document.getElementById("applyFilter");
+
+let familias = [];
+
+// ===============================
+// Cargar todas las familias
+// ===============================
+
+async function cargarFamilias() {
+
+    tbody.innerHTML = "";
+
+    try {
+
+        const response = await fetch(API);
+
+        familias = await response.json();
+
+        mostrarFamilias(familias);
+
+    } catch (error) {
+
+        console.error(error);
+
+        tbody.innerHTML =
+            "<tr><td colspan='5'>No se pudo cargar la información.</td></tr>";
+
     }
 
-    function renderTable(families) { //Renderiza la tabla
-      const tbody = document.querySelector("#familyTable tbody"); 
-      tbody.innerHTML = "";
-      families.forEach(f => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${f.name}</td>
-          <td>${f.memberQuantity}</td>
-          <td>${f.ecoService?.litersOfWaterConsumedPd * 30 || 0} L</td>
-          <td>${f.ecoService?.hoursOfLightPd * 30 || 0} h</td>
-          <td>${f.ecoIndex || "N/A"}</td>
+}
+
+// ===============================
+// Mostrar familias
+// ===============================
+
+async function mostrarFamilias(lista) {
+
+    tbody.innerHTML = "";
+
+    for (const familia of lista) {
+
+        let agua = "";
+        let luz = "";
+        let eco = "";
+
+        try {
+
+            const aguaResponse = await fetch(API + "/agua/" + familia.id);
+            agua = await aguaResponse.text();
+
+            const luzResponse = await fetch(API + "/luz/" + familia.id);
+            luz = await luzResponse.text();
+
+            const ecoResponse = await fetch(API + "/eco-indice/" + familia.id);
+            eco = await ecoResponse.text();
+
+        } catch (error) {
+
+            agua = "Error";
+            luz = "Error";
+            eco = "Error";
+
+        }
+
+        tbody.innerHTML += `
+            <tr>
+                <td>${familia.name}</td>
+                <td>${familia.memberQuantity}</td>
+                <td>${agua}</td>
+                <td>${luz}</td>
+                <td>${eco}</td>
+            </tr>
         `;
-        tbody.appendChild(row);
-      });
+
     }
 
-    document.getElementById("applyFilter").addEventListener("click", async () => { //Recibe el click de apply filter
-      const filter = document.getElementById("memberFilter").value; //constante filter que recibe el valor del filtro
-      const response = await fetch("http://localhost:8080/api/family"); //constante response que hace fetch del url de localhost
-      const families = await response.json(); //constante families que agarra el json de response
-      let filtered = families;
+}
 
-      //Condiciones if para los filtros de tamaño de familia
-      if (filter === "1-3") filtered = families.filter(f => f.memberQuantity <= 3); 
-      else if (filter === "4-6") filtered = families.filter(f => f.memberQuantity >= 4 && f.memberQuantity <= 6);
-      else if (filter === "7+") filtered = families.filter(f => f.memberQuantity >= 7);
+// ===============================
+// Aplicar filtro
+// ===============================
 
-      renderTable(filtered); //Renderiza la tabla
-    });
+botonFiltro.addEventListener("click", () => {
 
-    loadFamilies(); //Carga las familias ya filtradas
+    const valor = filtro.value;
+
+    let resultado = [];
+
+    if (valor === "all") {
+
+        resultado = familias;
+
+    } else if (valor === "1-3") {
+
+        resultado = familias.filter(f =>
+            f.memberQuantity >= 1 &&
+            f.memberQuantity <= 3
+        );
+
+    } else if (valor === "4-6") {
+
+        resultado = familias.filter(f =>
+            f.memberQuantity >= 4 &&
+            f.memberQuantity <= 6
+        );
+
+    } else {
+
+        resultado = familias.filter(f =>
+            f.memberQuantity >= 7
+        );
+
+    }
+
+    mostrarFamilias(resultado);
+
+});
+
+// ===============================
+// Iniciar
+// ===============================
+
+cargarFamilias();
